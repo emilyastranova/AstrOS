@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import Commands.Commands;
 import HomePanels.OptionsPanels.Breadsticks;
 import Main.CustomColorButton;
+import Vars.MenuVars;
 import Vars.Vars;
 
 public class Appetizers {
@@ -30,6 +31,7 @@ public class Appetizers {
 		buttonItem1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Options.switchPanel(Breadsticks.panel);
+				Commands.add2Ticket(MenuVars.strBreadsticks);
 			}
 		});
 		

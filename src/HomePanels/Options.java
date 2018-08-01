@@ -22,8 +22,7 @@ public class Options {
 		Blank.createView(g);
 		panel.add(Blank.panel);
 
-		panel.setBounds(0, (Vars.dimensionFullScreen.height * 2 / 3), (Vars.dimensionFullScreen.width * 2 / 3),
-				Vars.dimensionFullScreen.height / 3);
+		panel.setBounds(0, (Vars.dimensionFullScreen.height * 2 / 3), (Vars.dimensionFullScreen.width * 2 / 3),Vars.dimensionFullScreen.height / 3);
 	}
 
 	public static void switchPanel(JPanel panelNew) {
