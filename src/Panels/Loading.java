@@ -9,11 +9,11 @@ import Vars.Vars;
 
 public class Loading {
 	public static JPanel panel = new JPanel();
-	
+
 	public static void createView(Graphics g) {
 		panel.setLayout(null);
 		panel.setBackground(Vars.colorMainBG);
-		
+
 		JLabel labelLoading = new JLabel("Loading...");
 		labelLoading.setHorizontalAlignment(JLabel.CENTER);
 		labelLoading.setFont(Vars.fontDefault);

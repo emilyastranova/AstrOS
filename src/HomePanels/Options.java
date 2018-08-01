@@ -13,7 +13,7 @@ import Vars.Vars;
 
 public class Options {
 	public static JPanel panel = new JPanel();
-	
+
 	public static void createView(Graphics g) {
 		panel.setLayout(null);
 		panel.setBackground(new Color(200, 200, 200));
@@ -21,10 +21,11 @@ public class Options {
 		Breadsticks.createView(g);
 		Blank.createView(g);
 		panel.add(Blank.panel);
-		
-		panel.setBounds(0, (Vars.dimensionFullScreen.height * 2/3), (Vars.dimensionFullScreen.width * 2/3), Vars.dimensionFullScreen.height / 3);
+
+		panel.setBounds(0, (Vars.dimensionFullScreen.height * 2 / 3), (Vars.dimensionFullScreen.width * 2 / 3),
+				Vars.dimensionFullScreen.height / 3);
 	}
-	
+
 	public static void switchPanel(JPanel panelNew) {
 		panel.removeAll();
 		panel.add(panelNew);

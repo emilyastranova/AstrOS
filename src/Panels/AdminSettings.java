@@ -10,9 +10,9 @@ import Vars.Vars;
 public class AdminSettings {
 
 	public static JPanel panel = new JPanel();
-	
+
 	public static void createView(Graphics g) {
 		panel.setLayout(null);
 		panel.setBackground(Vars.colorMainBG);
-	}	
+	}
 }

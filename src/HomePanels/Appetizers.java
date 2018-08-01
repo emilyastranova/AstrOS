@@ -1,38 +1,41 @@
 package HomePanels;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import HomePanels.OptionsPanels.*;
-import Main.CustomColorButton;
 import Commands.Commands;
+import HomePanels.OptionsPanels.Breadsticks;
+import Main.CustomColorButton;
 import Vars.Vars;
 
 public class Appetizers {
 	public static JPanel panel = new JPanel();
-	
+
 	public static void createView(Graphics g) {
 		panel.setLayout(null);
 		panel.setBackground(Vars.colorMainBG);
-		
+
 		JLabel label = new JLabel("Appetizers");
 		label.setBounds(5, 20, 200, 80);
 		label.setHorizontalAlignment(JLabel.CENTER);
 		label.setFont(Vars.fontDefault);
 		panel.add(label);
-		
+
 		CustomColorButton buttonItem1 = Commands.createMenuItemButton("Breadsticks", 5, 100);
 		buttonItem1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Options.switchPanel(Breadsticks.panel);
 			}
 		});
+		
+		ArrayList<CustomColorButton> buttonArray = new ArrayList<CustomColorButton>();
+		
+		
 		panel.add(buttonItem1);
 		CustomColorButton buttonItem2 = Commands.createMenuItemButton("Mozarella Sticks", 215, 100);
 		panel.add(buttonItem2);
@@ -44,9 +47,7 @@ public class Appetizers {
 		panel.add(buttonItem5);
 		CustomColorButton buttonItem6 = Commands.createMenuItemButton("Fried Pickles", 215, 210);
 		panel.add(buttonItem6);
-		
-		panel.setBounds(0, 80, (Vars.dimensionFullScreen.width * 2/3), Vars.dimensionFullScreen.height);
-	}	
+
+		panel.setBounds(0, 80, (Vars.dimensionFullScreen.width * 2 / 3), Vars.dimensionFullScreen.height);
+	}
 }
-
-

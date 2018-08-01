@@ -13,7 +13,7 @@ import Vars.Vars;
 import Commands.SQL;
 
 public class Main extends JFrame {
-	
+
 	private static final long serialVersionUID = 1L;
 	public static JFrame MainFrame;
 	public static JPanel panelHome;
@@ -22,20 +22,19 @@ public class Main extends JFrame {
 	public static JPanel panelAdminLogin;
 	public static JPanel panelAdminSettings;
 	public static JPanel panelLoading;
-	
 
 	public Main() {
 		createView(getGraphics());
-		
+
 		setTitle(Vars.Title);
 		setPreferredSize(Vars.dimensionFullScreen);
-		//setExtendedState(JFrame.MAXIMIZED_BOTH); 
-		//setUndecorated(true);
+		// setExtendedState(JFrame.MAXIMIZED_BOTH);
+		// setUndecorated(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
 		pack();
 	}
-	
+
 	public void createView(Graphics g) {
 		Home.createView(getGraphics());
 		panelHome = Home.panel;
@@ -49,19 +48,19 @@ public class Main extends JFrame {
 		panelAdminSettings = AdminSettings.panel;
 		Loading.createView(getGraphics());
 		panelLoading = Loading.panel;
-		
+
 		getContentPane().add(panelHome);
 	}
-	
+
 	public static void main(String[] Args) {
-		
-		
+
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException| UnsupportedLookAndFeelException e) {
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+				| UnsupportedLookAndFeelException e) {
 			e.printStackTrace();
 		}
-		
+
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -69,7 +68,7 @@ public class Main extends JFrame {
 				MainFrame.setVisible(true);
 			}
 		});
-		
+
 	}
-	
+
 }

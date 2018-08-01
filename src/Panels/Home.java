@@ -19,7 +19,7 @@ import Vars.Vars;
 
 public class Home {
 	public static JPanel panel = new JPanel();
-	
+
 	public static void createView(Graphics g) {
 		panel.setLayout(null);
 		panel.setBackground(Vars.colorMainBG);
@@ -29,7 +29,7 @@ public class Home {
 		Desserts.createView(g);
 		Ticket.createView(g);
 		Options.createView(g);
-		
+
 		CustomColorButton buttonHeadAppetizers = Commands.createHeaderButton("Appetizers", 5);
 		CustomColorButton buttonHeadEntrees = Commands.createHeaderButton("Misc. Entrees", 215);
 		CustomColorButton buttonHeadPizza = Commands.createHeaderButton("Pizza", 425);
@@ -95,9 +95,9 @@ public class Home {
 			}
 		});
 		panel.add(buttonHeadDesserts);
-		
+
 		panel.add(Options.panel);
 		panel.add(Appetizers.panel);
 		panel.add(Ticket.panel);
-	}	
+	}
 }
