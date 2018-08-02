@@ -92,5 +92,35 @@ public class SQL {
 		}		
 		return array;
 	}
+	
+	public static String returnPriceOfItem(String Table, String Item) {
+		String index = null;
+		try {
+			rs = stmt.executeQuery("SELECT `Price` FROM `"+ Table + "` WHERE `Items` = \"" + Item + "\"");
+			if(rs.next()) {
+				index = rs.getString(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return index;
+		
+	}
+	
+	public static String returnPriceOfOption(String Table, String Item) {
+		String index = null;
+		try {
+			rs = stmt.executeQuery("SELECT `Price` FROM `"+ Table + "` WHERE `Options` = \"" + Item + "\"");
+			if(rs.next()) {
+				index = rs.getString(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return index;
+		
+	}
 
 }

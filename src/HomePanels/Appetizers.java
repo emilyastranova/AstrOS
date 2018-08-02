@@ -16,7 +16,7 @@ import Vars.Vars;
 
 public class Appetizers {
 	public static JPanel panel = new JPanel();
-	public static ArrayList<String> appetizers = SQL.returnTableContents("Appetizers", "Menu Items");
+	public static ArrayList<String> appetizers = SQL.returnTableContents("Appetizers", "Items");
 	public static ArrayList<MenuItem> appetizerButtons = new ArrayList<MenuItem>();
 
 	public static void createView(Graphics g) {
@@ -30,23 +30,6 @@ public class Appetizers {
 		panel.add(label);
 
 		setAppetizersFromSQL();
-
-		/*
-		 * CustomColorButton buttonItem1 = Commands.createMenuItemButton("Breadsticks",
-		 * 5, 100); buttonItem1.addActionListener(new ActionListener() { public void
-		 * actionPerformed(ActionEvent e) { Options.switchPanel(Breadsticks.panel);
-		 * Commands.add2Ticket(MenuVars.strBreadsticks); } }); panel.add(buttonItem1);
-		 * CustomColorButton buttonItem2 =
-		 * Commands.createMenuItemButton("Mozarella Sticks", 215, 100);
-		 * panel.add(buttonItem2); CustomColorButton buttonItem3 =
-		 * Commands.createMenuItemButton("Nachos", 425, 100); panel.add(buttonItem3);
-		 * CustomColorButton buttonItem4 = Commands.createMenuItemButton("Wings", 635,
-		 * 100); panel.add(buttonItem4); CustomColorButton buttonItem5 =
-		 * Commands.createMenuItemButton("Fried Jalapenos", 5, 210);
-		 * panel.add(buttonItem5); CustomColorButton buttonItem6 =
-		 * Commands.createMenuItemButton("Fried Pickles", 215, 210);
-		 * panel.add(buttonItem6);
-		 */
 
 		panel.setBounds(0, 80, (Vars.dimensionFullScreen.width * 2 / 3), Vars.dimensionFullScreen.height);
 	}
@@ -67,6 +50,7 @@ public class Appetizers {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					 Options.assignPanel(nameOfItem);
+					 Commands.add2Ticket(Commands.ticketSpacing(nameOfItem, Double.parseDouble(SQL.returnPriceOfItem("Appetizers", nameOfItem))));
 					 OptionPanel.updatePanel();
 				}});
 			panel.add(appetizerButtons.get(i));
