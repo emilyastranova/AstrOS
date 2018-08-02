@@ -7,33 +7,24 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import HomePanels.CustomColorButton;
 import HomePanels.Ticket;
+import Main.CustomColorButton;
 import Main.Main;
 import Vars.Vars;
 
 public class Commands {
 	
-	public static JButton createOptionItemButton(String name, int x, int y) {
-		JButton button = new JButton(name);
+	public static CustomColorButton createOptionItemButton(String name, int x, int y) {
+		CustomColorButton button = new CustomColorButton(Vars.colorDefaultOptionButton, Vars.colorDefaultFont);
+		button.setText(name);
 		button.setBounds(x, y, 150, 100);
 		button.setFont(Commands.changeFontSize(15));
 		button.setBackground(new Color(255, 255, 0));
 		return button;
 	}
 	
-	public static JButton createMenuItemButton(String name, int x, int y) {
-		JButton button = new JButton(name);
-		button.setBounds(x, y, 200, 100);
-		button.setHorizontalAlignment(JButton.CENTER);
-		button.setVerticalAlignment(JButton.CENTER);
-		button.setFont(Commands.changeFontSize(20));
-		button.setBackground(new Color(0, 255, 0));
-		return button;
-	}
-	
-	public static CustomColorButton createMenuItemButton(String name, int x, int y, Color normal, Color font) {
-		CustomColorButton button = new CustomColorButton(normal, font);
+	public static CustomColorButton createMenuItemButton(String name, int x, int y) {
+		CustomColorButton button = new CustomColorButton(Vars.colorDefaultMenuItemButton, Vars.colorDefaultFont);
 		button.setText(name);
 		button.setBounds(x, y, 200, 100);
 		button.setHorizontalAlignment(JButton.CENTER);
@@ -50,22 +41,18 @@ public class Commands {
 		Ticket.panel.setVisible(true);
 	}
 	
-	public static JButton createHeaderButton(String name, int x) {
-		JButton button = new JButton(name);
-		button.setBounds(x, 5, 200, 100);
-		button.setFont(changeFontSize(25));
-		button.setBackground(Vars.colorDefaultHeaderButton);
-		button.setOpaque(true);
-		return button;
+	public static void changeButtonColor(CustomColorButton button, Color normal) {
+		button.normalColor = normal;
+		button.lightColor = normal.brighter();
+		button.darkColor = normal.darker();
+		button.repaint();
 	}
 	
-	public static CustomColorButton createHeaderButton(String name, int x, Color normal) {
-		CustomColorButton button = new CustomColorButton(normal, Color.black);
+	public static CustomColorButton createHeaderButton(String name, int x) {
+		CustomColorButton button = new CustomColorButton(Vars.colorDefaultHeaderButton, Vars.colorDefaultFont);
 		button.setText(name);
 		button.setBounds(x, 5, 200, 100);
 		button.setFont(changeFontSize(25));
-		button.setBackground(Vars.colorDefaultHeaderButton);
-		button.setOpaque(true);
 		return button;
 	}
 	
@@ -86,20 +73,9 @@ public class Commands {
 		return str;
 	}
 	
-	public static JButton createButton(String Text, int x, int y, int width, int height, boolean centered, int size) {
-		JButton button = new JButton(Text);
-		Font font = new Font(Vars.fontDefault.getFontName(), Font.PLAIN, size);
-		button.setFont(font);		
-		if (!centered) {
-			button.setBounds(x, y, width, height);
-		} else if (centered) {
-			button.setBounds((x - (width / 2)), (y - (height / 2)), width, height);
-		}
-		return button;
-	}
-	
-	public static JButton createButton(String Text, int x, int y, int width, int height, boolean centered) {
-		JButton button = new JButton(Text);
+	public static CustomColorButton createButton(String Text, int x, int y, int width, int height, boolean centered) {
+		CustomColorButton button = new CustomColorButton(Vars.colorDefualtButton, Vars.colorDefaultFont);
+		button.setText(Text);
 		button.setFont(Vars.fontDefault);
 		if (!centered) {
 			button.setBounds(x, y, width, height);

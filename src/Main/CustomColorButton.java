@@ -1,4 +1,4 @@
-package HomePanels;
+package Main;
 
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -18,9 +18,9 @@ public class CustomColorButton extends JButton implements ActionListener, MouseL
     private boolean hovered = false;
     private boolean clicked = false;
 
-    private Color normalColor = null;
-    private Color lightColor = null;
-    private Color darkColor = null;
+    public Color normalColor = null;
+    public Color lightColor = null;
+    public Color darkColor = null;
 
     public CustomColorButton(Color normalRedColor, Color fontColor)
     {
@@ -75,7 +75,7 @@ public class CustomColorButton extends JButton implements ActionListener, MouseL
     @Override
     public void actionPerformed(ActionEvent arg0)
     {
-        System.out.println("Button clicked!");
+    	
     }
 
     @Override

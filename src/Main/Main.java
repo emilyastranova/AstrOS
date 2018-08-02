@@ -50,7 +50,7 @@ public class Main extends JFrame {
 		Loading.createView(getGraphics());
 		panelLoading = Loading.panel;
 		
-		getContentPane().add(panelStartUp);
+		getContentPane().add(panelHome);
 	}
 	
 	public static void main(String[] Args) {
