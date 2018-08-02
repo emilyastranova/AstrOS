@@ -45,7 +45,7 @@ public class Main extends JFrame {
 			public void windowClosing(WindowEvent e) {
 				SQL.closeConnection();
 				System.out.println("Connection Closed");
-				System.exit(0);// cierra aplicacion
+				System.exit(0);
 			}
 		});
 		pack();
