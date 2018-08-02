@@ -70,5 +70,18 @@ public class SQL {
 		}		
 		return array;
 	}
+	
+	public static ArrayList<String> returnAllContents(){
+		ArrayList<String> array = new ArrayList<String>();
+		try {
+			rs = stmt.executeQuery("SELECT table_name FROM information_schema.tables WHERE table_schema ='u888023296_pizza';");
+			while(rs.next()) {
+					array.add(rs.getString(1));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+		return array;
+	}
 
 }

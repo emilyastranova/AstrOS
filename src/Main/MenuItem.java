@@ -14,7 +14,7 @@ import javax.swing.JButton;
 
 ;
 
-public class CustomColorButton extends JButton implements ActionListener, MouseListener {
+public class MenuItem extends JButton implements ActionListener, MouseListener {
 	private boolean hovered = false;
 	private boolean clicked = false;
 
@@ -22,7 +22,10 @@ public class CustomColorButton extends JButton implements ActionListener, MouseL
 	public Color lightColor = null;
 	public Color darkColor = null;
 
-	public CustomColorButton(Color normalRedColor, Color fontColor) {
+	public int index = 0;
+	public String name = null;
+	
+	public MenuItem(Color normalRedColor, Color fontColor) {
 		setForeground(fontColor);
 
 		this.normalColor = normalRedColor;
@@ -32,6 +35,11 @@ public class CustomColorButton extends JButton implements ActionListener, MouseL
 		addActionListener(this);
 		addMouseListener(this);
 		setContentAreaFilled(false);
+	}
+	
+	public void setButtonText(String n) {
+		name = n;
+		this.setText(n);
 	}
 
 	// @Override
@@ -68,6 +76,18 @@ public class CustomColorButton extends JButton implements ActionListener, MouseL
 		g2d.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 7, 7);
 
 		super.paintComponent(g);
+	}
+	
+	public void setIndex(int i) {
+		index = i;
+	}
+	
+	public int getIndex() {
+		return index;
+	}
+	
+	public String getName() {
+		return name;
 	}
 
 	@Override

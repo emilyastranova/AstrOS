@@ -14,7 +14,7 @@ import HomePanels.Entrees;
 import HomePanels.Options;
 import HomePanels.Pizza;
 import HomePanels.Ticket;
-import Main.CustomColorButton;
+import Main.MenuItem;
 import Vars.Vars;
 
 public class Home {
@@ -30,10 +30,10 @@ public class Home {
 		Ticket.createView(g);
 		Options.createView(g);
 
-		CustomColorButton buttonHeadAppetizers = Commands.createHeaderButton("Appetizers", 5);
-		CustomColorButton buttonHeadEntrees = Commands.createHeaderButton("Misc. Entrees", 215);
-		CustomColorButton buttonHeadPizza = Commands.createHeaderButton("Pizza", 425);
-		CustomColorButton buttonHeadDesserts = Commands.createHeaderButton("Desserts", 635);
+		MenuItem buttonHeadAppetizers = Commands.createHeaderButton("Appetizers", 5);
+		MenuItem buttonHeadEntrees = Commands.createHeaderButton("Misc. Entrees", 215);
+		MenuItem buttonHeadPizza = Commands.createHeaderButton("Pizza", 425);
+		MenuItem buttonHeadDesserts = Commands.createHeaderButton("Desserts", 635);
 		buttonHeadAppetizers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panel.remove(Entrees.panel);
