@@ -37,8 +37,8 @@ public class Main extends JFrame {
 
 		setTitle(Vars.Title);
 		setPreferredSize(Vars.dimensionFullScreen);
-		 setExtendedState(JFrame.MAXIMIZED_BOTH);
-		 setUndecorated(true);
+//		setExtendedState(JFrame.MAXIMIZED_BOTH);
+//		setUndecorated(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
 		this.addWindowListener(new WindowAdapter() {

@@ -2,21 +2,39 @@ package Commands;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import HomePanels.Options;
 import HomePanels.Ticket;
-import Main.MenuItem;
 import Main.Main;
+import Main.MenuItem;
 import Vars.Vars;
 
 public class Commands {
+	
+	public static String ticketSpacing(String str, double doublePrice) {
+		String spaces = "";
+		String finalString;
+		String price = Double.toString(doublePrice);
+		if (price.endsWith(".0")) {
+			price += "0";
+		}
+		
+		int strLen = str.length();
+		int priceLen = price.length();
+		int totalLen = strLen + priceLen;
+		int numOfSpaces = 47 - totalLen;
+
+		for (int i = 0; i < numOfSpaces; i++) {
+			spaces += " ";
+		}
+
+		finalString = str + spaces + "$" + price + "\n";
+		return finalString;
+	}
 
 	public static MenuItem createOptionItemButton(String name, int x, int y) {
 		MenuItem button = new MenuItem(Vars.colorDefaultOptionButton, Vars.colorDefaultFont);
