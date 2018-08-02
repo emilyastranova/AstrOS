@@ -1,16 +1,24 @@
 package Main;
 
 import java.awt.Graphics;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import Panels.*;
-import Vars.Vars;
 import Commands.SQL;
+import Panels.AdminLogin;
+import Panels.AdminSettings;
+import Panels.Home;
+import Panels.Loading;
+import Panels.SignIn;
+import Panels.StartUp;
+import Vars.Vars;
 
 public class Main extends JFrame {
 
@@ -29,11 +37,19 @@ public class Main extends JFrame {
 
 		setTitle(Vars.Title);
 		setPreferredSize(Vars.dimensionFullScreen);
-		// setExtendedState(JFrame.MAXIMIZED_BOTH);
-		// setUndecorated(true);
+		 setExtendedState(JFrame.MAXIMIZED_BOTH);
+		 setUndecorated(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				SQL.closeConnection();
+				System.out.println("Connection Closed");
+				System.exit(0);// cierra aplicacion
+			}
+		});
 		pack();
+
 	}
 
 	public void createView(Graphics g) {

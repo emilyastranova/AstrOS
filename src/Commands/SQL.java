@@ -39,6 +39,15 @@ public class SQL {
 		}
 
 	}
+	
+	public static void closeConnection() {
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.err.println("Somehow your dumbass still cant close servers");
+		}
+	}
 
 	public static boolean checkSignInCode(String signInCode) {
 		try {

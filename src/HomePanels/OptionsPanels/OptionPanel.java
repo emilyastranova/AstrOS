@@ -27,26 +27,32 @@ public class OptionPanel {
 		panel.setBackground(null);
 		panel.setBounds(5, 5, (Vars.dimensionFullScreen.width * 2 / 3) - 5, Vars.dimensionFullScreen.height / 3 - 5);
 	}
-	
+
 	public static void updatePanel() {
-		System.out.println(nameOfItem);
 		availableOptions = SQL.returnAllContents();
-		System.out.println(availableOptions);
 		
-		
-		for (int x = 0; x < Appetizers.getItems().size(); x++) {
-			if (!nameOfItem.equals("NOTHING")&&availableOptions.contains("Opt_" + nameOfItem))
-				items = SQL.returnTableContents("Opt_" + nameOfItem, "Options");
+		if (!nameOfItem.equals("NOTHING") && availableOptions.contains("Opt_" + nameOfItem))
+			items = SQL.returnTableContents("Opt_" + nameOfItem, "Options");
+		else
+			items = new ArrayList<String>();
+
+		panel.removeAll();
+		ArrayList<MenuItem> itemButtons = new ArrayList<MenuItem>();
+		for (int x = 0; x < items.size(); x++) {
+			itemButtons.add(Commands.createOptionItemButton(items.get(x), 5 + (x * 155), 5));
+			panel.add(itemButtons.get(x));
 		}
 
-		if (nameOfItem.equals("Breadsticks")) {
-			MenuItem buttonOption1 = Commands.createOptionItemButton("Marinara Sauce", 5, 5);
-			panel.add(buttonOption1);
-			MenuItem buttonOption2 = Commands.createOptionItemButton("Alfredo Sauce", 160, 5);
-			panel.add(buttonOption2);
-			MenuItem buttonOption3 = Commands.createOptionItemButton("No Sauce", 315, 5);
-			panel.add(buttonOption3);
-		}
+		// if (nameOfItem.equals("Breadsticks")) {
+		// MenuItem buttonOption1 = Commands.createOptionItemButton("Marinara Sauce", 5,
+		// 5);
+		// panel.add(buttonOption1);
+		// MenuItem buttonOption2 = Commands.createOptionItemButton("Alfredo Sauce",
+		// 160, 5);
+		// panel.add(buttonOption2);
+		// MenuItem buttonOption3 = Commands.createOptionItemButton("No Sauce", 315, 5);
+		// panel.add(buttonOption3);
+		// }
 	}
 
 }
