@@ -27,9 +27,7 @@ public class StartUp {
 		buttonNormalStartup.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Commands.switchPanels(Main.panelStartUp, Main.panelLoading);
-				SQL.initConnect();
-				Commands.switchPanels(Main.panelLoading, Main.panelSignIn);
+				Commands.switchPanels(Main.panelStartUp, Main.panelSignIn);
 			}
 		});
 		panel.add(buttonNormalStartup);

@@ -2,11 +2,15 @@ package Commands;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import HomePanels.Options;
 import HomePanels.Ticket;
 import Main.CustomColorButton;
 import Main.Main;
@@ -31,6 +35,11 @@ public class Commands {
 		button.setVerticalAlignment(JButton.CENTER);
 		button.setFont(Commands.changeFontSize(20));
 		button.setBackground(new Color(0, 255, 0));
+		/*button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Options.switchPanel(panelNew);
+			}
+		});*/
 		return button;
 	}
 
@@ -102,5 +111,16 @@ public class Commands {
 		label.setBounds(x, y, width, size + 5);
 		label.setFont(Vars.fontDefault);
 		return label;
+	}
+	
+	public static ArrayList<String> to1dArrayList(ArrayList<ArrayList<String>> ArrayList2d) {
+		ArrayList<String> ArrayList = new ArrayList<String>();
+		if (ArrayList2d.size() == 1) {
+			for (int i = 0; i < ArrayList2d.get(0).size(); i++) {
+				ArrayList.add(ArrayList2d.get(0).get(i));
+			}
+		}
+		
+		return ArrayList;
 	}
 }
