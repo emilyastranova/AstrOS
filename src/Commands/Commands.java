@@ -35,7 +35,11 @@ public class Commands {
 	}
 
 	public static void add2Ticket(String str) {
-		Ticket.ticketText += str;
+		if (Ticket.ticketText != null) {
+			Ticket.ticketText += str;
+		} else {
+			Ticket.ticketText = str;
+		}
 		Ticket.ticketTextArea.setText(Ticket.ticketText);
 		Ticket.panel.setVisible(false);
 		Ticket.panel.setVisible(true);

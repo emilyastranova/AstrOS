@@ -28,7 +28,6 @@ public class Ticket {
 		ticketTextArea.setBackground(new Color(200, 200, 200));
 		panel.add(ticketTextArea);
 
-		panel.setBounds((Vars.dimensionFullScreen.width * 2 / 3), 0, (Vars.dimensionFullScreen.width / 3),
-				Vars.dimensionFullScreen.height);
+		panel.setBounds((Vars.dimensionFullScreen.width * 2 / 3), 0, (Vars.dimensionFullScreen.width / 3),Vars.dimensionFullScreen.height);
 	}
 }
