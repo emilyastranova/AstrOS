@@ -24,6 +24,7 @@ public class Main extends JFrame {
 	public static JPanel panelLoading;
 
 	public Main() {
+		SQL.initConnect();
 		createView(getGraphics());
 
 		setTitle(Vars.Title);

@@ -2,10 +2,12 @@ package Commands;
 //change the capitalized strings - SERVER/DB, USER, PASSWORD, TABLE, COMUMN1 & COLUMN2
 
 //make sure to configure the jdbc and the jdbc-bin JAR files into the buildpath
-
-import java.sql.*;
-
-import Main.Main;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 public class SQL {
 
@@ -52,6 +54,21 @@ public class SQL {
 			e.printStackTrace();
 		}
 		return isLoggedIn;
+	}
+	
+	public static ArrayList<String> returnTableContents(String Table, String... Columns) {
+		ArrayList<String> array = new ArrayList<String>();
+		try {
+			rs = stmt.executeQuery("SELECT * FROM `" + Table + "`;");
+			while(rs.next()) {
+				for (int i = 0; i < Columns.length; i++) {
+					array.add(rs.getString(Columns[i]));
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+		return array;
 	}
 
 }
