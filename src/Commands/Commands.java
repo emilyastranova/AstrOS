@@ -106,6 +106,7 @@ public class Commands {
 	public static void removeFromTicket(int line) {
 		System.out.println(Ticket.ticketText.substring(line * 50, (line * 50) + 48));
 		Ticket.ticketText.replace(Ticket.ticketText.substring(line * 50, (line * 50) + 48), "");
+		
 		Ticket.ticketTextArea.setText(Ticket.ticketText);
 		Ticket.panel.setVisible(false);
 		Ticket.panel.setVisible(true);	
@@ -118,6 +119,7 @@ public class Commands {
 		} else {
 			Ticket.ticketText = str;
 		}
+		Ticket.currentLine += 1;
 		Ticket.ticketTextArea.setText(Ticket.ticketText);
 		Ticket.panel.setVisible(false);
 		Ticket.panel.setVisible(true);
