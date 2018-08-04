@@ -12,6 +12,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import Commands.SQL;
+import Panels.Add;
 import Panels.AdminLogin;
 import Panels.AdminSettings;
 import Panels.Home;
@@ -30,9 +31,9 @@ public class Main extends JFrame {
 	public static JPanel panelAdminLogin;
 	public static JPanel panelAdminSettings;
 	public static JPanel panelLoading;
+	public static JPanel panelAdd;
 
-	public Main() {
-		SQL.initConnect();
+	public Main() {		
 		createView(getGraphics());
 
 		setTitle(Vars.Title);
@@ -65,11 +66,17 @@ public class Main extends JFrame {
 		panelAdminSettings = AdminSettings.panel;
 		Loading.createView(getGraphics());
 		panelLoading = Loading.panel;
+		Add.createView(getGraphics());
+		panelAdd = Add.panel;
 
 		getContentPane().add(panelHome);
 	}
 
 	public static void main(String[] Args) {
+		SQL.initConnect();
+		if (!SQL.isConnected) {
+			System.exit(0);
+		}
 
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

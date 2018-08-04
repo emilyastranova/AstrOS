@@ -34,7 +34,8 @@ public class SQL {
 
 			stmt = conn.createStatement();
 		} catch (Exception exc) {
-			exc.printStackTrace();
+			System.out.println("Connection Failed");
+			isConnected = false;
 		}
 		
 		try {

@@ -38,8 +38,10 @@ public class Appetizers {
 		for (int i = 0; i < appetizers.size(); i++) {
 			if (i < 4) {
 				appetizerButtons.add(Commands.createMenuItemButton(appetizers.get(i), ((i * 210) + 5), 100));
-			} else {
+			} else if (i < 8) {				
 				appetizerButtons.add(Commands.createMenuItemButton(appetizers.get(i), (((i - 4) * 210) + 5), 210));
+			} else {
+				appetizerButtons.add(Commands.createMenuItemButton(appetizers.get(i), (((i - 8) * 210) + 5), 320));
 			}
 		}
 
@@ -51,13 +53,14 @@ public class Appetizers {
 				public void actionPerformed(ActionEvent e) {
 					 Options.assignPanel(nameOfItem);
 					 Commands.add2Ticket(Commands.ticketSpacing(nameOfItem, Double.parseDouble(SQL.returnPriceOfItem("Appetizers", nameOfItem))));
+					 Ticket.prices.add(Double.parseDouble(SQL.returnPriceOfItem("Appetizers", nameOfItem)));
 					 OptionPanel.updatePanel();
 				}});
 			panel.add(appetizerButtons.get(i));
 		}
 	}
-	
+	/* Don't Know If We Still Need This...........
 	public static ArrayList<MenuItem> getItems(){
 		return appetizerButtons;
-	}
+	}*/
 }

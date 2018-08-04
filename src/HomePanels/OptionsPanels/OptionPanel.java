@@ -1,6 +1,8 @@
 package HomePanels.OptionsPanels;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ public class OptionPanel {
 	public static void createView(Graphics g) {
 		panel.setLayout(null);
 		panel.setBackground(null);
+		
 		panel.setBounds(5, 5, (Vars.dimensionFullScreen.width * 2 / 3) - 5, Vars.dimensionFullScreen.height / 3 - 5);
 	}
 
@@ -40,14 +43,24 @@ public class OptionPanel {
 		panel.removeAll();
 		ArrayList<MenuItem> itemButtons = new ArrayList<MenuItem>();
 		for (int x = 0; x < items.size(); x++) {
-			itemButtons.add(Commands.createOptionItemButton(items.get(x), 5 + (x * 155), 5));
-			String nameOfOption = itemButtons.get(x).getName();
+			if (x < 8) {
+				itemButtons.add(Commands.createOptionItemButton(items.get(x), 5 + (x * 100), 5));
+			} else {
+				itemButtons.add(Commands.createOptionItemButton(items.get(x), 5 + ((x - 8) * 100), 110));
+			}	
+			String nameOfOption = items.get(x);
 			itemButtons.get(x).addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					Commands.add2Ticket(Commands.ticketSpacing(nameOfOption, Double.parseDouble(SQL.returnPriceOfOption("Opt_" + nameOfItem, nameOfOption))));				}
+					Commands.add2Ticket(Commands.ticketSpacing(nameOfOption, Double.parseDouble(SQL.returnPriceOfOption("Opt_" + nameOfItem, nameOfOption)), true));
+				}
 			});
 			panel.add(itemButtons.get(x));
 		}
+
+
+		panel.add(Commands.buttonAdd);
+		panel.add(Commands.buttonRemove);
+		
 	}
 
 }
