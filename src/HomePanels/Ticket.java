@@ -19,6 +19,7 @@ public class Ticket {
 	public static JTextArea ticketTextArea;
 	public static JScrollPane scrollPane;
 	public static ArrayList<Double> prices = new ArrayList<Double>();
+	public static int currentLine = 0;
 
 	public static void createView(Graphics g) {
 		panel.setLayout(null);
