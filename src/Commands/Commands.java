@@ -2,6 +2,9 @@ package Commands;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -11,39 +14,83 @@ import javax.swing.JPanel;
 import HomePanels.Ticket;
 import Main.Main;
 import Main.MenuItem;
+import Panels.Add;
+import Panels.Home;
 import Vars.Vars;
 
 public class Commands {
 	
-	public static String ticketSpacing(String str, double doublePrice) {
+	public static MenuItem buttonAdd;
+	public static MenuItem buttonRemove;
+
+	public static String ticketSpacing(String name, double doublePrice) {
 		String spaces = "";
 		String finalString;
 		String price = Double.toString(doublePrice);
 		if (price.endsWith(".0")) {
 			price += "0";
 		}
-		
-		int strLen = str.length();
+
+		int strLen = name.length();
 		int priceLen = price.length();
 		int totalLen = strLen + priceLen;
-		int numOfSpaces = 47 - totalLen;
+		int numOfSpaces = 46 - totalLen;
 
 		for (int i = 0; i < numOfSpaces; i++) {
 			spaces += " ";
 		}
 
-		finalString = str + spaces + "$" + price + "\n";
+		finalString = name + spaces + "$" + price + "\n";
+		return finalString;
+	}
+
+	public static String ticketSpacing(String name, double doublePrice, boolean isOption) {
+		String spaces = "";
+		String finalString;
+		String price = Double.toString(doublePrice);
+		if (price.endsWith(".0")) {
+			price += "0";
+		}
+
+		int strLen = name.length();
+		int priceLen = price.length();
+		int totalLen = strLen + priceLen;
+		int numOfSpaces;
+		if (isOption) {
+			numOfSpaces = 40 - totalLen;
+		} else {
+			numOfSpaces = 46 - totalLen;
+		}
+
+		for (int i = 0; i < numOfSpaces; i++) {
+			spaces += " ";
+		}
+		if (isOption) {
+			finalString = "    - " + name + spaces + "$" + price + "\n";
+		} else {
+			finalString = name + spaces + "$" + price + "\n";
+		}
 		return finalString;
 	}
 
 	public static MenuItem createOptionItemButton(String name, int x, int y) {
 		MenuItem button = new MenuItem(Vars.colorDefaultOptionButton, Vars.colorDefaultFont);
-		button.setButtonText(name);
-		button.setBounds(x, y, 150, 100);
+		button.setButtonText(buttonText(name, "50px"));
+		button.setBounds(x, y, 95, 100);
+		button.setMargin(new Insets(0, 0, 0, 0));
 		button.setFont(Commands.changeFontSize(15));
 		button.setBackground(new Color(255, 255, 0));
 		return button;
 	}
+	
+	public static String buttonText(String text, String width) {
+        String content1 = "<html>" +
+            "<body style='text-align: center; width: ";
+        String content2 = "'>" + "<p>";
+        String content3 = "</p>";
+        final String content = content1 + width + content2 + text + content3;
+        return content;
+    }
 
 	public static MenuItem createMenuItemButton(String name, int x, int y) {
 		MenuItem button = new MenuItem(Vars.colorDefaultMenuItemButton, Vars.colorDefaultFont);
@@ -53,12 +100,16 @@ public class Commands {
 		button.setVerticalAlignment(JButton.CENTER);
 		button.setFont(Commands.changeFontSize(20));
 		button.setBackground(new Color(0, 255, 0));
-		/*button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Options.switchPanel(panelNew);
-			}
-		});*/
 		return button;
+	}
+	
+	public static void removeFromTicket(int line) {
+		System.out.println(Ticket.ticketText.substring(line * 50, (line * 50) + 48));
+		Ticket.ticketText.replace(Ticket.ticketText.substring(line * 50, (line * 50) + 48), "");
+		Ticket.ticketTextArea.setText(Ticket.ticketText);
+		Ticket.panel.setVisible(false);
+		Ticket.panel.setVisible(true);	
+		System.out.println(Ticket.ticketTextArea.getText());
 	}
 
 	public static void add2Ticket(String str) {
@@ -98,6 +149,31 @@ public class Commands {
 		Main.MainFrame.setVisible(false);
 		Main.MainFrame.setVisible(true);
 	}
+	
+	public static void createAddandRemoveButtons() {
+		buttonAdd = new MenuItem(Color.GREEN, Vars.colorDefaultFont);
+		buttonAdd.setButtonText(Commands.buttonText("ADD +", "25px"));
+		buttonAdd.setBounds(805, 5, 105, 100);
+		buttonAdd.setMargin(new Insets(0, 0, 0, 0));
+		buttonAdd.setFont(Commands.changeFontSize(15));
+		buttonAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Add.panel.add(Ticket.panel);
+				switchPanels(Main.panelHome, Main.panelAdd);
+			}
+		});
+		
+		buttonRemove = new MenuItem(Color.RED, Vars.colorDefaultFont);
+		buttonRemove.setButtonText(Commands.buttonText("REMOVE -", "25px"));
+		buttonRemove.setBounds(805, 110, 105, 100);
+		buttonRemove.setMargin(new Insets(0, 0, 0, 0));
+		buttonRemove.setFont(Commands.changeFontSize(15));
+		buttonRemove.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				removeFromTicket(0);
+			}
+		});
+	}
 
 	public static String removeLastChar(String str) {
 		str = str.substring(0, str.length() - 1);
@@ -130,7 +206,7 @@ public class Commands {
 		label.setFont(Vars.fontDefault);
 		return label;
 	}
-	
+
 	public static ArrayList<String> to1dArrayList(ArrayList<ArrayList<String>> ArrayList2d) {
 		ArrayList<String> ArrayList = new ArrayList<String>();
 		if (ArrayList2d.size() == 1) {
@@ -138,7 +214,7 @@ public class Commands {
 				ArrayList.add(ArrayList2d.get(0).get(i));
 			}
 		}
-		
+
 		return ArrayList;
 	}
 }

@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import Commands.SQL;
 import HomePanels.OptionsPanels.Blank;
 import HomePanels.OptionsPanels.OptionPanel;
+import Main.MenuItem;
 import Vars.Vars;
 
 public class Options {
