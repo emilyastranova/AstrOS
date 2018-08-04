@@ -15,9 +15,9 @@ import Vars.Vars;
 public class Ticket {
 	public static JPanel panel = new JPanel();
 	public static String ticket;
-	public static String ticketText;
 	public static JTextArea ticketTextArea;
 	public static JScrollPane scrollPane;
+	public static ArrayList<String> ticketText = new ArrayList<String>();
 	public static ArrayList<Double> prices = new ArrayList<Double>();
 	public static int currentLine = 0;
 
