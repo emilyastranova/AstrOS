@@ -10,12 +10,13 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import HomePanels.Ticket;
 import Main.Main;
 import Main.MenuItem;
 import Panels.Add;
-import Panels.Home;
+import Panels.Remove;
 import Vars.Vars;
 
 public class Commands {
@@ -72,6 +73,15 @@ public class Commands {
 		}
 		return finalString;
 	}
+	
+	public static JTextField createRemoveItem(String text, int y) {
+		JTextField field = new JTextField();
+		field.setText(text);
+		field.setFont(new Font("Lucida Console", Font.PLAIN, 15));
+		field.setEditable(false);
+		field.setBounds(5, y, (Vars.dimensionFullScreen.width / 3) - 5, 20);
+		return field;
+	}
 
 	public static MenuItem createOptionItemButton(String name, int x, int y) {
 		MenuItem button = new MenuItem(Vars.colorDefaultOptionButton, Vars.colorDefaultFont);
@@ -79,7 +89,6 @@ public class Commands {
 		button.setBounds(x, y, 95, 100);
 		button.setMargin(new Insets(0, 0, 0, 0));
 		button.setFont(Commands.changeFontSize(15));
-		button.setBackground(new Color(255, 255, 0));
 		return button;
 	}
 	
@@ -103,26 +112,24 @@ public class Commands {
 		return button;
 	}
 	
-	public static void removeFromTicket(int line) {
-		System.out.println(Ticket.ticketText.substring(line * 50, (line * 50) + 48));
-		Ticket.ticketText.replace(Ticket.ticketText.substring(line * 50, (line * 50) + 48), "");
-		
-		Ticket.ticketTextArea.setText(Ticket.ticketText);
+	public static void refreshTicket() {
+		Ticket.ticketTextArea.setText("");
+		for (int i = 0; i < Ticket.ticketText.size(); i++) {
+			Ticket.ticketTextArea.setText(Ticket.ticketTextArea.getText() + Ticket.ticketText.get(i));
+		}
 		Ticket.panel.setVisible(false);
-		Ticket.panel.setVisible(true);	
-		System.out.println(Ticket.ticketTextArea.getText());
+		Ticket.panel.setVisible(true);
+	}
+	
+	public static void removeFromTicket(int line) {
+		Ticket.ticketText.remove(line);
+		refreshTicket();
 	}
 
 	public static void add2Ticket(String str) {
-		if (Ticket.ticketText != null) {
-			Ticket.ticketText += str;
-		} else {
-			Ticket.ticketText = str;
-		}
+		Ticket.ticketText.add(str);
 		Ticket.currentLine += 1;
-		Ticket.ticketTextArea.setText(Ticket.ticketText);
-		Ticket.panel.setVisible(false);
-		Ticket.panel.setVisible(true);
+		refreshTicket();
 	}
 
 	public static void changeButtonColor(MenuItem button, Color normal) {
@@ -172,7 +179,8 @@ public class Commands {
 		buttonRemove.setFont(Commands.changeFontSize(15));
 		buttonRemove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				removeFromTicket(0);
+				Remove.createView(Main.MainFrame.getGraphics());
+				switchPanels(Main.panelHome, Main.panelRemove);
 			}
 		});
 	}
