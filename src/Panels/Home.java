@@ -29,10 +29,10 @@ public class Home {
 		Ticket.createView(g);
 		Options.createView(g);
 
-		MenuItem buttonHeadAppetizers = Commands.createHeaderButton("Appetizers", 5);
-		MenuItem buttonHeadEntrees = Commands.createHeaderButton("Misc. Entrees", 215);
-		MenuItem buttonHeadPizza = Commands.createHeaderButton("Pizza", 425);
-		MenuItem buttonHeadDesserts = Commands.createHeaderButton("Subs", 635);
+		MenuItemButton buttonHeadAppetizers = Commands.createHeaderButton("Appetizers", 5);
+		MenuItemButton buttonHeadEntrees = Commands.createHeaderButton("Misc. Entrees", 215);
+		MenuItemButton buttonHeadPizza = Commands.createHeaderButton("Pizza", 425);
+		MenuItemButton buttonHeadDesserts = Commands.createHeaderButton("Subs", 635);
 		buttonHeadAppetizers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panel.remove(Entrees.panel);

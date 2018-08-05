@@ -15,14 +15,15 @@ import javax.swing.JTextField;
 import HomePanels.Ticket;
 import Main.Main;
 import Main.MenuItem;
+import Main.MenuItemButton;
 import Panels.Add;
 import Panels.Remove;
 import Vars.Vars;
 
 public class Commands {
 	
-	public static MenuItem buttonAdd;
-	public static MenuItem buttonRemove;
+	public static MenuItemButton buttonAdd;
+	public static MenuItemButton buttonRemove;
 
 	public static String ticketSpacing(String name, double doublePrice) {
 		String spaces = "";
@@ -83,8 +84,8 @@ public class Commands {
 		return field;
 	}
 
-	public static MenuItem createOptionItemButton(String name, int x, int y) {
-		MenuItem button = new MenuItem(Vars.colorDefaultOptionButton, Vars.colorDefaultFont);
+	public static MenuItemButton createOptionItemButton(String name, int x, int y) {
+		MenuItemButton button = new MenuItemButton(Vars.colorDefaultOptionButton, Vars.colorDefaultFont);
 		button.setButtonText(buttonText(name, "50px"));
 		button.setBounds(x, y, 95, 100);
 		button.setMargin(new Insets(0, 0, 0, 0));
@@ -101,8 +102,8 @@ public class Commands {
         return content;
     }
 
-	public static MenuItem createMenuItemButton(String name, int x, int y) {
-		MenuItem button = new MenuItem(Vars.colorDefaultMenuItemButton, Vars.colorDefaultFont);
+	public static MenuItemButton createMenuItemButton(String name, int x, int y) {
+		MenuItemButton button = new MenuItemButton(Vars.colorDefaultMenuItemButton, Vars.colorDefaultFont);
 		button.setButtonText(name);
 		button.setBounds(x, y, 200, 100);
 		button.setHorizontalAlignment(JButton.CENTER);
@@ -114,33 +115,33 @@ public class Commands {
 	
 	public static void refreshTicket() {
 		Ticket.ticketTextArea.setText("");
-		for (int i = 0; i < Ticket.ticketText.size(); i++) {
-			Ticket.ticketTextArea.setText(Ticket.ticketTextArea.getText() + Ticket.ticketText.get(i));
+		for (int i = 0; i < Ticket.ticketItems.size(); i++) {
+			Ticket.ticketTextArea.setText(Ticket.ticketTextArea.getText() + Ticket.ticketItems.get(i));
 		}
 		Ticket.panel.setVisible(false);
 		Ticket.panel.setVisible(true);
 	}
 	
 	public static void removeFromTicket(int line) {
-		Ticket.ticketText.remove(line);
+		Ticket.ticketItems.remove(line);
 		refreshTicket();
 	}
 
-	public static void add2Ticket(String str) {
-		Ticket.ticketText.add(str);
+	public static void add2Ticket(String str, Double price) {
+		Ticket.ticketItems.add(new MenuItem(str,price));
 		Ticket.currentLine += 1;
 		refreshTicket();
 	}
 
-	public static void changeButtonColor(MenuItem button, Color normal) {
+	public static void changeButtonColor(MenuItemButton button, Color normal) {
 		button.normalColor = normal;
 		button.lightColor = normal.brighter();
 		button.darkColor = normal.darker();
 		button.repaint();
 	}
 
-	public static MenuItem createHeaderButton(String name, int x) {
-		MenuItem button = new MenuItem(Vars.colorDefaultHeaderButton, Vars.colorDefaultFont);
+	public static MenuItemButton createHeaderButton(String name, int x) {
+		MenuItemButton button = new MenuItemButton(Vars.colorDefaultHeaderButton, Vars.colorDefaultFont);
 		button.setText(name);
 		button.setBounds(x, 5, 200, 100);
 		button.setFont(changeFontSize(25));
@@ -160,7 +161,7 @@ public class Commands {
 	}
 	
 	public static void createAddandRemoveButtons() {
-		buttonAdd = new MenuItem(Color.GREEN, Vars.colorDefaultFont);
+		buttonAdd = new MenuItemButton(Color.GREEN, Vars.colorDefaultFont);
 		buttonAdd.setButtonText(Commands.buttonText("ADD +", "25px"));
 		buttonAdd.setBounds(805, 5, 105, 100);
 		buttonAdd.setMargin(new Insets(0, 0, 0, 0));
@@ -172,7 +173,7 @@ public class Commands {
 			}
 		});
 		
-		buttonRemove = new MenuItem(Color.RED, Vars.colorDefaultFont);
+		buttonRemove = new MenuItemButton(Color.RED, Vars.colorDefaultFont);
 		buttonRemove.setButtonText(Commands.buttonText("REMOVE -", "25px"));
 		buttonRemove.setBounds(805, 110, 105, 100);
 		buttonRemove.setMargin(new Insets(0, 0, 0, 0));
@@ -190,8 +191,8 @@ public class Commands {
 		return str;
 	}
 
-	public static MenuItem createButton(String Text, int x, int y, int width, int height, boolean centered) {
-		MenuItem button = new MenuItem(Vars.colorDefualtButton, Vars.colorDefaultFont);
+	public static MenuItemButton createButton(String Text, int x, int y, int width, int height, boolean centered) {
+		MenuItemButton button = new MenuItemButton(Vars.colorDefualtButton, Vars.colorDefaultFont);
 		button.setText(Text);
 		button.setFont(Vars.fontDefault);
 		if (!centered) {

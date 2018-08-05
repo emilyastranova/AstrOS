@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import Commands.Commands;
 import Commands.SQL;
 import HomePanels.Ticket;
-import Main.MenuItem;
+import Main.MenuItemButton;
 import Vars.Vars;
 
 public class Add {
@@ -34,7 +34,7 @@ public class Add {
 		}
 
 		panel.removeAll();
-		ArrayList<MenuItem> itemButtons = new ArrayList<MenuItem>();
+		ArrayList<MenuItemButton> itemButtons = new ArrayList<MenuItemButton>();
 		for (int i = 0; i < (items.size() / 9) + 1; i++) {
 			for (int j = 0; j < 9; j++) {
 				int currentIndex = (i * 9) + j;
@@ -44,7 +44,7 @@ public class Add {
 					String nameOfOption = items.get(currentIndex);
 					itemButtons.get(currentIndex).addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							Commands.add2Ticket(Commands.ticketSpacing(nameOfOption, Double.parseDouble(SQL.returnPriceOfOption(table, nameOfOption)), true));
+							Commands.add2Ticket(Commands.ticketSpacing(nameOfOption, Double.parseDouble(SQL.returnPriceOfOption(table, nameOfOption)), true),0.00);
 						}
 					});
 					panel.add(itemButtons.get(currentIndex));

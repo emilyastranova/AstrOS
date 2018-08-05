@@ -11,13 +11,13 @@ import javax.swing.JPanel;
 import Commands.Commands;
 import Commands.SQL;
 import HomePanels.OptionsPanels.OptionPanel;
-import Main.MenuItem;
+import Main.MenuItemButton;
 import Vars.Vars;
 
 public class Pizza {
 	public static JPanel panel = new JPanel();
 	public static ArrayList<String> pizzas = SQL.returnTableContents("Pizza", "Items");
-	public static ArrayList<MenuItem> pizzaButtons = new ArrayList<MenuItem>();
+	public static ArrayList<MenuItemButton> pizzaButtons = new ArrayList<MenuItemButton>();
 
 	public static void createView(Graphics g) {
 		panel.setLayout(null);
@@ -50,8 +50,7 @@ public class Pizza {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					 Options.assignPanel(nameOfItem);
-					 Commands.add2Ticket(Commands.ticketSpacing(nameOfItem, Double.parseDouble(SQL.returnPriceOfItem("Pizza", nameOfItem))));
-					 Ticket.prices.add(Double.parseDouble(SQL.returnPriceOfItem("Pizza", nameOfItem)));
+					 Commands.add2Ticket(Commands.ticketSpacing(nameOfItem, Double.parseDouble(SQL.returnPriceOfItem("Pizza", nameOfItem))),Double.parseDouble(SQL.returnPriceOfItem("Pizza", nameOfItem)));
 					 OptionPanel.updatePanel();
 				}});
 			panel.add(pizzaButtons.get(i));

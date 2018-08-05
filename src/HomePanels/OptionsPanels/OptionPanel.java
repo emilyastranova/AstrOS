@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 import Commands.Commands;
 import Commands.SQL;
-import Main.MenuItem;
+import Main.MenuItemButton;
 import Vars.Vars;
 
 public class OptionPanel {
@@ -41,7 +41,7 @@ public class OptionPanel {
 			items = new ArrayList<String>();
 
 		panel.removeAll();
-		ArrayList<MenuItem> itemButtons = new ArrayList<MenuItem>();
+		ArrayList<MenuItemButton> itemButtons = new ArrayList<MenuItemButton>();
 		for (int x = 0; x < items.size(); x++) {
 			if (x < 8) {
 				itemButtons.add(Commands.createOptionItemButton(items.get(x), 5 + (x * 100), 5));
@@ -51,7 +51,7 @@ public class OptionPanel {
 			String nameOfOption = items.get(x);
 			itemButtons.get(x).addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					Commands.add2Ticket(Commands.ticketSpacing(nameOfOption, Double.parseDouble(SQL.returnPriceOfOption("Opt_" + nameOfItem, nameOfOption)), true));
+					Commands.add2Ticket(Commands.ticketSpacing(nameOfOption, Double.parseDouble(SQL.returnPriceOfOption("Opt_" + nameOfItem, nameOfOption)), true),0.00);
 				}
 			});
 			panel.add(itemButtons.get(x));

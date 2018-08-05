@@ -35,13 +35,13 @@ public class Main extends JFrame {
 	public static JPanel panelAdd;
 	public static JPanel panelRemove;
 
-	public Main() {		
+	public Main() {
 		createView(getGraphics());
 
 		setTitle(Vars.Title);
 		setPreferredSize(Vars.dimensionFullScreen);
-//		setExtendedState(JFrame.MAXIMIZED_BOTH);
-//		setUndecorated(true);
+		// setExtendedState(JFrame.MAXIMIZED_BOTH);
+		// setUndecorated(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
 		this.addWindowListener(new WindowAdapter() {

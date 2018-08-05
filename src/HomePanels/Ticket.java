@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import Main.MenuItem;
 import Vars.Vars;
 
 public class Ticket {
@@ -17,8 +18,9 @@ public class Ticket {
 	public static String ticket;
 	public static JTextArea ticketTextArea;
 	public static JScrollPane scrollPane;
-	public static ArrayList<String> ticketText = new ArrayList<String>();
-	public static ArrayList<Double> prices = new ArrayList<Double>();
+//	public static ArrayList<String> ticketText = new ArrayList<String>();
+//	public static ArrayList<Double> prices = new ArrayList<Double>();
+	public static ArrayList<MenuItem> ticketItems = new ArrayList<MenuItem>();
 	public static int currentLine = 0;
 
 	public static void createView(Graphics g) {
