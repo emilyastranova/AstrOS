@@ -44,7 +44,7 @@ public class Add {
 					String nameOfOption = items.get(currentIndex);
 					itemButtons.get(currentIndex).addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							Commands.add2Ticket(Commands.ticketSpacing(nameOfOption, Double.parseDouble(SQL.returnPriceOfOption(table, nameOfOption)), true),0.00);
+							Commands.addToTicket(Commands.ticketSpacing(nameOfOption, Double.parseDouble(SQL.returnPriceOfOption(table, nameOfOption)), true),0.00);
 						}
 					});
 					panel.add(itemButtons.get(currentIndex));

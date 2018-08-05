@@ -50,7 +50,7 @@ public class Pizza {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					 Options.assignPanel(nameOfItem);
-					 Commands.add2Ticket(Commands.ticketSpacing(nameOfItem, Double.parseDouble(SQL.returnPriceOfItem("Pizza", nameOfItem))),Double.parseDouble(SQL.returnPriceOfItem("Pizza", nameOfItem)));
+					 Commands.addToTicket(Commands.ticketSpacing(nameOfItem, Double.parseDouble(SQL.returnPriceOfItem("Pizza", nameOfItem))),Double.parseDouble(SQL.returnPriceOfItem("Pizza", nameOfItem)));
 					 OptionPanel.updatePanel();
 				}});
 			panel.add(pizzaButtons.get(i));

@@ -50,7 +50,7 @@ public class Entrees {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					 Options.assignPanel(nameOfItem);
-					 Commands.add2Ticket(Commands.ticketSpacing(nameOfItem, Double.parseDouble(SQL.returnPriceOfItem("Entrees", nameOfItem))),Double.parseDouble(SQL.returnPriceOfItem("Entrees", nameOfItem)));
+					 Commands.addToTicket(Commands.ticketSpacing(nameOfItem, Double.parseDouble(SQL.returnPriceOfItem("Entrees", nameOfItem))),Double.parseDouble(SQL.returnPriceOfItem("Entrees", nameOfItem)));
 					 OptionPanel.updatePanel();
 				}});
 			panel.add(entreeButtons.get(i));

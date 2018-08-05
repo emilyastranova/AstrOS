@@ -17,7 +17,6 @@ import Panels.AdminLogin;
 import Panels.AdminSettings;
 import Panels.Home;
 import Panels.Loading;
-import Panels.Remove;
 import Panels.SignIn;
 import Panels.StartUp;
 import Vars.Vars;
@@ -70,8 +69,6 @@ public class Main extends JFrame {
 		panelLoading = Loading.panel;
 		Add.createView(getGraphics());
 		panelAdd = Add.panel;
-		Remove.createView(getGraphics());
-		panelRemove = Remove.panel;
 
 		getContentPane().add(panelHome);
 	}

@@ -52,14 +52,11 @@ public class Appetizers {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					 Options.assignPanel(nameOfItem);
-					 Commands.add2Ticket(Commands.ticketSpacing(nameOfItem, Double.parseDouble(SQL.returnPriceOfItem("Appetizers", nameOfItem))),Double.parseDouble(SQL.returnPriceOfItem("Appetizers", nameOfItem)));
+					 for(int x = 0; x < 10; x++)
+					 Commands.addToTicket(Commands.ticketSpacing(nameOfItem, Double.parseDouble(SQL.returnPriceOfItem("Appetizers", nameOfItem))),Double.parseDouble(SQL.returnPriceOfItem("Appetizers", nameOfItem)));
 					 OptionPanel.updatePanel();
 				}});
 			panel.add(appetizerButtons.get(i));
 		}
 	}
-	/* Don't Know If We Still Need This...........
-	public static ArrayList<MenuItem> getItems(){
-		return appetizerButtons;
-	}*/
 }

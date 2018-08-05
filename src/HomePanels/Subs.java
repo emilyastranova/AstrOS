@@ -50,7 +50,7 @@ public class Subs {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					 Options.assignPanel(nameOfItem);
-					 Commands.add2Ticket(Commands.ticketSpacing(nameOfItem, Double.parseDouble(SQL.returnPriceOfItem("Subs", nameOfItem))),Double.parseDouble(SQL.returnPriceOfItem("Subs", nameOfItem)));
+					 Commands.addToTicket(Commands.ticketSpacing(nameOfItem, Double.parseDouble(SQL.returnPriceOfItem("Subs", nameOfItem))),Double.parseDouble(SQL.returnPriceOfItem("Subs", nameOfItem)));
 					 OptionPanel.updatePanel();
 				}});
 			panel.add(subButtons.get(i));

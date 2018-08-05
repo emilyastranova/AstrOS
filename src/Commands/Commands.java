@@ -17,11 +17,10 @@ import Main.Main;
 import Main.MenuItem;
 import Main.MenuItemButton;
 import Panels.Add;
-import Panels.Remove;
 import Vars.Vars;
 
 public class Commands {
-	
+
 	public static MenuItemButton buttonAdd;
 	public static MenuItemButton buttonRemove;
 
@@ -74,7 +73,7 @@ public class Commands {
 		}
 		return finalString;
 	}
-	
+
 	public static JTextField createRemoveItem(String text, int y) {
 		JTextField field = new JTextField();
 		field.setText(text);
@@ -92,15 +91,14 @@ public class Commands {
 		button.setFont(Commands.changeFontSize(15));
 		return button;
 	}
-	
+
 	public static String buttonText(String text, String width) {
-        String content1 = "<html>" +
-            "<body style='text-align: center; width: ";
-        String content2 = "'>" + "<p>";
-        String content3 = "</p>";
-        final String content = content1 + width + content2 + text + content3;
-        return content;
-    }
+		String content1 = "<html>" + "<body style='text-align: center; width: ";
+		String content2 = "'>" + "<p>";
+		String content3 = "</p>";
+		final String content = content1 + width + content2 + text + content3;
+		return content;
+	}
 
 	public static MenuItemButton createMenuItemButton(String name, int x, int y) {
 		MenuItemButton button = new MenuItemButton(Vars.colorDefaultMenuItemButton, Vars.colorDefaultFont);
@@ -112,24 +110,25 @@ public class Commands {
 		button.setBackground(new Color(0, 255, 0));
 		return button;
 	}
-	
+
 	public static void refreshTicket() {
-		Ticket.ticketTextArea.setText("");
-		for (int i = 0; i < Ticket.ticketItems.size(); i++) {
-			Ticket.ticketTextArea.setText(Ticket.ticketTextArea.getText() + Ticket.ticketItems.get(i));
-		}
+	//	Ticket.ticketTextArea.setText("");
+//		for (int i = 0; i < Ticket.ticketItems.size(); i++) {
+//			//Ticket.ticketTextArea.setText(Ticket.ticketTextArea.getText() + Ticket.ticketItems.get(i));
+//		}
+		Ticket.refresh();
 		Ticket.panel.setVisible(false);
 		Ticket.panel.setVisible(true);
 	}
-	
+
 	public static void removeFromTicket(int line) {
+		if(!Ticket.ticketItems.isEmpty())
 		Ticket.ticketItems.remove(line);
 		refreshTicket();
 	}
 
-	public static void add2Ticket(String str, Double price) {
-		Ticket.ticketItems.add(new MenuItem(str,price));
-		Ticket.currentLine += 1;
+	public static void addToTicket(String str, Double price) {
+		Ticket.ticketItems.add(new MenuItem(str, price));
 		refreshTicket();
 	}
 
@@ -159,7 +158,7 @@ public class Commands {
 		Main.MainFrame.setVisible(false);
 		Main.MainFrame.setVisible(true);
 	}
-	
+
 	public static void createAddandRemoveButtons() {
 		buttonAdd = new MenuItemButton(Color.GREEN, Vars.colorDefaultFont);
 		buttonAdd.setButtonText(Commands.buttonText("ADD +", "25px"));
@@ -172,7 +171,7 @@ public class Commands {
 				switchPanels(Main.panelHome, Main.panelAdd);
 			}
 		});
-		
+
 		buttonRemove = new MenuItemButton(Color.RED, Vars.colorDefaultFont);
 		buttonRemove.setButtonText(Commands.buttonText("REMOVE -", "25px"));
 		buttonRemove.setBounds(805, 110, 105, 100);
@@ -180,8 +179,8 @@ public class Commands {
 		buttonRemove.setFont(Commands.changeFontSize(15));
 		buttonRemove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Remove.createView(Main.MainFrame.getGraphics());
-				switchPanels(Main.panelHome, Main.panelRemove);
+				//TODO
+				removeFromTicket(0);
 			}
 		});
 	}
