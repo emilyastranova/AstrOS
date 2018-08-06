@@ -4,14 +4,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import Commands.Commands;
@@ -26,6 +24,7 @@ public class Ticket {
 	public static JScrollPane scrollPane;
 	public static ArrayList<MenuItem> ticketItems = new ArrayList<MenuItem>();
 	public static int buttonSize = 50;
+	public static DecimalFormat formatter = new DecimalFormat("#,##0.00");
 
 	public static void createView(Graphics g) {
 		panel.setLayout(null);
@@ -80,14 +79,6 @@ public class Ticket {
 		}
 		itemsPanel.setPreferredSize(new Dimension((Vars.dimensionFullScreen.width / 3) - 5, (ticketItems.size()*buttonSize)));
 		String price = Double.toString(getPrice());
-		if (price.endsWith(".0")) {
-			price += "0";
-		}
-		if (price.charAt(price.length() - 3) != '.') {
-			for (int i = 0; price.charAt(price.length() - 3) != '.'; i++) {
-				Commands.removeLastChar(price);
-			}
-		}
-		totalPrice.setText("Total: $"+ price);
+		totalPrice.setText("Total: $"+ formatter.format(Double.parseDouble(price)));
 	}
 }

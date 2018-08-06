@@ -6,7 +6,7 @@ import java.awt.Font;
 import java.awt.Toolkit;
 
 public class Vars {
-	public static final String Title = "PizzaOS";
+	public static final String Title = "AstroOS";
 	public static final String MasterPassword = "tt";
 
 	public static final Dimension dimensionFullScreen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -18,7 +18,7 @@ public class Vars {
 	public static final Color colorDefaultMenuItemButton = new Color(0, 255, 0);
 	public static final Color colorDefaultOptionButton = new Color(255, 255, 0);
 	public static final Color colorDefaultFont = new Color(0, 0, 0);
-	public static final Color colorDefaultSelected = new Color(0, 255, 255);
+	public static final Color colorDefaultSelected = Color.BLUE;
 
 	public static final Font fontDefault = new Font("Arial", Font.PLAIN, 30);
 
