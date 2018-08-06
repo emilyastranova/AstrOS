@@ -12,7 +12,7 @@ public class Vars {
 	public static final Dimension dimensionFullScreen = Toolkit.getDefaultToolkit().getScreenSize();
 
 	public static final Color colorMainBG = new Color(250, 250, 250);
-	public static final Color colorDefualtButton = new Color(250, 250, 250);
+	public static final Color colorDefaultButton = new Color(250, 250, 250);
 	public static final Color colorDefaultHeaderButton = new Color(255, 0, 0);
 	public static final Color colorDefaultHeaderButtonSelected = new Color(0, 0, 255);
 	public static final Color colorDefaultMenuItemButton = new Color(0, 255, 0);

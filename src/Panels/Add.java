@@ -13,6 +13,7 @@ import Commands.Commands;
 import Commands.SQL;
 import HomePanels.Ticket;
 import Main.Main;
+import Main.MenuItem;
 import Main.MenuItemButton;
 import Vars.Vars;
 
@@ -59,6 +60,8 @@ public class Add{
 			}
 		});
 		tables = SQL.returnAllContents();
+		
+		MenuItemButton buttonSEEME = new MenuItemButton(Vars.colorDefaultButton, Vars.colorDefaultFont);
 
 		if (tables.contains(table)) {
 			items = SQL.returnTableContents(table, "Options");
@@ -83,17 +86,6 @@ public class Add{
 					panel.add(itemButtons.get(currentIndex));
 				}
 			}
-			/*
-			 * if (i < 8) { itemButtons.add(Commands.createOptionItemButton(items.get(i), 5
-			 * + (i * 100), 5)); } else {
-			 * itemButtons.add(Commands.createOptionItemButton(items.get(i), 5 + ((i - 8) *
-			 * 100), 110)); } String nameOfOption = items.get(i);
-			 * itemButtons.get(i).addActionListener(new ActionListener() { public void
-			 * actionPerformed(ActionEvent e) {
-			 * Commands.add2Ticket(Commands.ticketSpacing(nameOfOption,
-			 * Double.parseDouble(SQL.returnPriceOfOption(table, nameOfOption)), true)); }
-			 * }); panel.add(itemButtons.get(i));
-			 */
 		}
 		panel.setBounds(0, 0, Vars.dimensionFullScreen.width, Vars.dimensionFullScreen.height);
 	}

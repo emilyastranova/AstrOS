@@ -79,6 +79,15 @@ public class Ticket {
 			itemsPanel.add(ticketItems.get(x));
 		}
 		itemsPanel.setPreferredSize(new Dimension((Vars.dimensionFullScreen.width / 3) - 5, (ticketItems.size()*buttonSize)));
-		totalPrice.setText("Total: $"+Double.toString(Math.round(getPrice()*100.0)/100.0));
+		String price = Double.toString(getPrice());
+		if (price.endsWith(".0")) {
+			price += "0";
+		}
+		if (price.charAt(price.length() - 3) != '.') {
+			for (int i = 0; price.charAt(price.length() - 3) != '.'; i++) {
+				Commands.removeLastChar(price);
+			}
+		}
+		totalPrice.setText("Total: $"+ price);
 	}
 }

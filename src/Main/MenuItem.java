@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import Vars.Vars;
 import Commands.Commands;
 
 public class MenuItem extends JButton implements ActionListener {
@@ -58,9 +59,9 @@ public class MenuItem extends JButton implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		selected = !selected;
 		if(selected)
-			setForeground(Color.RED);
+			setForeground(Vars.colorDefaultSelected);
 		else
-			setForeground(Color.BLACK);
+			setForeground(Vars.colorDefaultFont);
 		
 	}
 

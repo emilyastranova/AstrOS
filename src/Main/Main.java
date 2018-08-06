@@ -32,7 +32,6 @@ public class Main extends JFrame {
 	public static JPanel panelAdminSettings;
 	public static JPanel panelLoading;
 	public static JPanel panelAdd;
-	public static JPanel panelRemove;
 
 	public Main() {
 		createView(getGraphics());

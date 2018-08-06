@@ -35,7 +35,7 @@ public class Commands {
 		int strLen = name.length();
 		int priceLen = price.length();
 		int totalLen = strLen + priceLen;
-		int numOfSpaces = 46 - totalLen;
+		int numOfSpaces = 40 - totalLen;
 
 		for (int i = 0; i < numOfSpaces; i++) {
 			spaces += " ";
@@ -192,7 +192,7 @@ public class Commands {
 	}
 
 	public static MenuItemButton createButton(String Text, int x, int y, int width, int height, boolean centered) {
-		MenuItemButton button = new MenuItemButton(Vars.colorDefualtButton, Vars.colorDefaultFont);
+		MenuItemButton button = new MenuItemButton(Vars.colorDefaultButton, Vars.colorDefaultFont);
 		button.setText(Text);
 		button.setFont(Vars.fontDefault);
 		if (!centered) {
