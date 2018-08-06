@@ -52,7 +52,6 @@ public class Appetizers {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					 Options.assignPanel(nameOfItem);
-					 for(int x = 0; x < 10; x++)
 					 Commands.addToTicket(Commands.ticketSpacing(nameOfItem, Double.parseDouble(SQL.returnPriceOfItem("Appetizers", nameOfItem))),Double.parseDouble(SQL.returnPriceOfItem("Appetizers", nameOfItem)));
 					 OptionPanel.updatePanel();
 				}});

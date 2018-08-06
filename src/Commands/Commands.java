@@ -172,6 +172,7 @@ public class Commands {
 			}
 		});
 
+		//THIS IS THE REMOVE BUTTON
 		buttonRemove = new MenuItemButton(Color.RED, Vars.colorDefaultFont);
 		buttonRemove.setButtonText(Commands.buttonText("REMOVE -", "25px"));
 		buttonRemove.setBounds(805, 110, 105, 100);
@@ -180,7 +181,7 @@ public class Commands {
 		buttonRemove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO
-				removeFromTicket(0);
+				Ticket.removeSelectedItem();
 			}
 		});
 	}

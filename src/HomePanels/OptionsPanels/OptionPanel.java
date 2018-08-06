@@ -51,7 +51,7 @@ public class OptionPanel {
 			String nameOfOption = items.get(x);
 			itemButtons.get(x).addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					Commands.addToTicket(Commands.ticketSpacing(nameOfOption, Double.parseDouble(SQL.returnPriceOfOption("Opt_" + nameOfItem, nameOfOption)), true),0.00);
+					Commands.addToTicket(Commands.ticketSpacing(nameOfOption, Double.parseDouble(SQL.returnPriceOfOption("Opt_" + nameOfItem, nameOfOption)), true),Double.parseDouble(SQL.returnPriceOfOption("Opt_" + nameOfItem, nameOfOption)));
 				}
 			});
 			panel.add(itemButtons.get(x));
