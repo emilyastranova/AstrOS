@@ -5,7 +5,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -19,6 +18,7 @@ import Panels.Home;
 import Panels.Loading;
 import Panels.SignIn;
 import Panels.StartUp;
+import Vars.LocalSQL;
 import Vars.Vars;
 
 public class Main extends JFrame {
@@ -44,7 +44,6 @@ public class Main extends JFrame {
 		setResizable(false);
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				SQL.closeConnection();
 				System.out.println("Connection Closed");
 				System.exit(0);
 			}
@@ -73,7 +72,7 @@ public class Main extends JFrame {
 	}
 
 	public static void main(String[] Args) {
-		SQL.initConnect();
+		LocalSQL database = new LocalSQL();
 		if (!SQL.isConnected) {
 			System.exit(0);
 		}

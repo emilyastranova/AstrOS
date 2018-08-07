@@ -50,7 +50,15 @@ public class LocalSQL {
     SQL.closeConnection();
   }
   
+  public void displayAppetizers() {
+  	System.out.println(Appetizers);
+  }
+
+  
   public static void main(String[] Args) {
     LocalSQL test = new LocalSQL();
+    test.displayAppetizers();
   }
+  
+  
 }

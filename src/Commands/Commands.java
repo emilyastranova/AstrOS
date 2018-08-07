@@ -100,13 +100,14 @@ public class Commands {
 		return content;
 	}
 
-	public static MenuItemButton createMenuItemButton(String name, int x, int y) {
+	public static MenuItemButton createMenuItemButton(String name, int x, int y, double price) {
 		MenuItemButton button = new MenuItemButton(Vars.colorDefaultMenuItemButton, Vars.colorDefaultFont);
 		button.setButtonText(name);
 		button.setBounds(x, y, 200, 100);
 		button.setHorizontalAlignment(JButton.CENTER);
 		button.setVerticalAlignment(JButton.CENTER);
 		button.setFont(Commands.changeFontSize(20));
+		button.setPrice(price);
 		return button;
 	}
 

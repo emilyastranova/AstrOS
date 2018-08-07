@@ -47,7 +47,7 @@ public class Ticket {
 		});
 		
 		totalPrice = new JTextField("Total: $0.00");
-		totalPrice.setBounds(5, Vars.dimensionFullScreen.height - 110, (Vars.dimensionFullScreen.width / 3) - 300, 90);
+		totalPrice.setBounds(5, Vars.dimensionFullScreen.height - 100, (Vars.dimensionFullScreen.width / 3) - 300, 90);
 		totalPrice.setEditable(false);
 		totalPrice.setFont(new Font("Lucida Console", Font.PLAIN, 25));
 		totalPrice.setBackground(Color.white);

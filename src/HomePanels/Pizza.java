@@ -9,51 +9,56 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Commands.Commands;
-import Commands.SQL;
 import HomePanels.OptionsPanels.OptionPanel;
 import Main.MenuItemButton;
+import Vars.LocalSQL;
 import Vars.Vars;
 
 public class Pizza {
 	public static JPanel panel = new JPanel();
-	public static ArrayList<String> pizzas = SQL.returnTableContents("Pizza", "Items");
-	public static ArrayList<MenuItemButton> pizzaButtons = new ArrayList<MenuItemButton>();
+	public static ArrayList<ArrayList<String>> entrees;
+	public static ArrayList<MenuItemButton> entreeButtons = new ArrayList<MenuItemButton>();
 
 	public static void createView(Graphics g) {
 		panel.setLayout(null);
 		panel.setBackground(Vars.colorMainBG);
 
+		entrees = LocalSQL.Pizza;
+		
 		JLabel label = new JLabel("Pizza");
 		label.setBounds(5, 20, 200, 80);
 		label.setHorizontalAlignment(JLabel.CENTER);
 		label.setFont(Vars.fontDefault);
 		panel.add(label);
-		
+
 		setPizzaFromSQL();
 
 		panel.setBounds(0, 80, (Vars.dimensionFullScreen.width * 2 / 3), Vars.dimensionFullScreen.height);
 	}
-
+	
 	public static void setPizzaFromSQL() {
-		for (int i = 0; i < pizzas.size(); i++) {
+		for (int i = 0; i < entrees.size(); i++) {
 			if (i < 4) {
-				pizzaButtons.add(Commands.createMenuItemButton(pizzas.get(i), ((i * 210) + 5), 100));
+				entreeButtons.add(Commands.createMenuItemButton(entrees.get(i).get(0), ((i * 210) + 5), 100,Double.parseDouble(entrees.get(i).get(1))));
+			} else if (i < 8) {				
+				entreeButtons.add(Commands.createMenuItemButton(entrees.get(i).get(0), (((i - 4) * 210) + 5), 210,Double.parseDouble(entrees.get(i).get(1))));
 			} else {
-				pizzaButtons.add(Commands.createMenuItemButton(pizzas.get(i), (((i - 4) * 210) + 5), 210));
+				entreeButtons.add(Commands.createMenuItemButton(entrees.get(i).get(0), (((i - 8) * 210) + 5), 320,Double.parseDouble(entrees.get(i).get(1))));
 			}
 		}
 
-		for (int i = 0; i < pizzaButtons.size(); i++) {
-			String nameOfItem = pizzaButtons.get(i).getName();
-			pizzaButtons.get(i).addActionListener(new ActionListener() {
+		for (int i = 0; i < entreeButtons.size(); i++) {
+			String nameOfItem = entreeButtons.get(i).getName();
+			double priceOfItem = entreeButtons.get(i).getPrice();
+			entreeButtons.get(i).addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					 Options.assignPanel(nameOfItem);
-					 Commands.addToTicket(Commands.ticketSpacing(nameOfItem, Double.parseDouble(SQL.returnPriceOfItem("Pizza", nameOfItem))),Double.parseDouble(SQL.returnPriceOfItem("Pizza", nameOfItem)));
+					 Commands.addToTicket(Commands.ticketSpacing(nameOfItem, priceOfItem),priceOfItem);
 					 OptionPanel.updatePanel();
 				}});
-			panel.add(pizzaButtons.get(i));
-		}		
+			panel.add(entreeButtons.get(i));
+		}
 	}
 }

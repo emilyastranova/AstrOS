@@ -25,7 +25,16 @@ public class MenuItemButton extends JButton implements ActionListener, MouseList
 
 	public int index = 0;
 	public String name = null;
+	public double price = 0.0;
 	
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
 	public MenuItemButton(Color normalRedColor, Color fontColor) {
 		setForeground(fontColor);
 
