@@ -54,6 +54,8 @@ public class Main extends JFrame {
 	}
 
 	public void createView(Graphics g) {
+		Add.createView(getGraphics());
+		panelAdd = Add.panel;
 		Home.createView(getGraphics());
 		panelHome = Home.panel;
 		SignIn.createView(getGraphics());
@@ -66,8 +68,6 @@ public class Main extends JFrame {
 		panelAdminSettings = AdminSettings.panel;
 		Loading.createView(getGraphics());
 		panelLoading = Loading.panel;
-		Add.createView(getGraphics());
-		panelAdd = Add.panel;
 
 		getContentPane().add(panelHome);
 	}

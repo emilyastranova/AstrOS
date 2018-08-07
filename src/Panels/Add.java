@@ -1,5 +1,7 @@
 package Panels;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,13 +9,14 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Commands.Commands;
 import Commands.SQL;
 import HomePanels.Ticket;
 import Main.Main;
-import Main.MenuItem;
 import Main.MenuItemButton;
 import Vars.Vars;
 
@@ -23,10 +26,19 @@ public class Add{
 	public static String table = "Opt_ALL";
 	public static ArrayList<String> items;
 	public static ArrayList<String> tables;
+	public static MenuItemButton buttonFinished;
 
 	public static void createView(Graphics g) {
 		panel.setLayout(null);
 		panel.setBackground(Vars.colorMainBG);
+		
+		
+		buttonFinished = new MenuItemButton(Vars.colorDefaultButton, Vars.colorDefaultFont);
+		buttonFinished.setText("Finished");
+		buttonFinished.setFont(Commands.changeFontSize(15));
+		buttonFinished.setBounds(Vars.dimensionFullScreen.width - 125, Vars.dimensionFullScreen.height - 90, 100, 50);
+		panel.add(buttonFinished);
+		
 		panel.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -60,8 +72,6 @@ public class Add{
 			}
 		});
 		tables = SQL.returnAllContents();
-		
-		MenuItemButton buttonSEEME = new MenuItemButton(Vars.colorDefaultButton, Vars.colorDefaultFont);
 
 		if (tables.contains(table)) {
 			items = SQL.returnTableContents(table, "Options");
@@ -69,7 +79,6 @@ public class Add{
 			items = new ArrayList<String>();
 		}
 
-		panel.removeAll();
 		ArrayList<MenuItemButton> itemButtons = new ArrayList<MenuItemButton>();
 		for (int i = 0; i < (items.size() / 9) + 1; i++) {
 			for (int j = 0; j < 9; j++) {

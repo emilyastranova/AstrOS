@@ -87,6 +87,22 @@ public class SQL {
 		return array;
 	}
 	
+	public static ArrayList<ArrayList<String>> returnTable(String Table, String... Columns) {
+		ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
+		try {
+			rs = stmt.executeQuery("SELECT * FROM `" + Table + "`;");
+			for (int i = 0; rs.next(); i++) {
+				array.add(new ArrayList<String>());
+				for (int j = 0; j < Columns.length; j++) {
+					array.get(i).add(rs.getString(Columns[j]));
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+		return array;
+	}
+	
 	public static ArrayList<String> returnAllContents(){
 		ArrayList<String> array = new ArrayList<String>();
 		try {

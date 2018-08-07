@@ -58,9 +58,9 @@ public class Commands {
 		int totalLen = strLen + priceLen;
 		int numOfSpaces;
 		if (isOption) {
-			numOfSpaces = 40 - totalLen;
+			numOfSpaces = 34 - totalLen;
 		} else {
-			numOfSpaces = 46 - totalLen;
+			numOfSpaces = 40 - totalLen;
 		}
 
 		for (int i = 0; i < numOfSpaces; i++) {
@@ -107,15 +107,10 @@ public class Commands {
 		button.setHorizontalAlignment(JButton.CENTER);
 		button.setVerticalAlignment(JButton.CENTER);
 		button.setFont(Commands.changeFontSize(20));
-		button.setBackground(new Color(0, 255, 0));
 		return button;
 	}
 
 	public static void refreshTicket() {
-	//	Ticket.ticketTextArea.setText("");
-//		for (int i = 0; i < Ticket.ticketItems.size(); i++) {
-//			//Ticket.ticketTextArea.setText(Ticket.ticketTextArea.getText() + Ticket.ticketItems.get(i));
-//		}
 		Ticket.refresh();
 		Ticket.panel.setVisible(false);
 		Ticket.panel.setVisible(true);

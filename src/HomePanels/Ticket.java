@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -14,6 +16,8 @@ import javax.swing.JTextField;
 
 import Commands.Commands;
 import Main.MenuItem;
+import Main.MenuItemButton;
+import Panels.Add;
 import Vars.Vars;
 
 public class Ticket {
@@ -22,6 +26,7 @@ public class Ticket {
 	public static String ticket;
 	public static JTextField totalPrice;
 	public static JScrollPane scrollPane;
+	public static MenuItemButton buttonSeeMe;
 	public static ArrayList<MenuItem> ticketItems = new ArrayList<MenuItem>();
 	public static int buttonSize = 50;
 	public static DecimalFormat formatter = new DecimalFormat("#,##0.00");
@@ -30,8 +35,20 @@ public class Ticket {
 		panel.setLayout(null);
 		panel.setBackground(new Color(200, 200, 200));
 		panel.setBorder(BorderFactory.createMatteBorder(0, 5, 0, 0, Color.BLACK));
+		
+		buttonSeeMe = new MenuItemButton(Vars.colorDefaultButton, Vars.colorDefaultFont);
+		buttonSeeMe.setText("SEE ME");
+		buttonSeeMe.setFont(Commands.changeFontSize(15));
+		buttonSeeMe.setBounds(150, 100, 100, 50);
+		buttonSeeMe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Commands.addToTicket(Commands.ticketSpacing("SEE ME", Double.parseDouble("0.00")), Double.parseDouble("0.00"));
+			}
+		});
+		panel.add(buttonSeeMe);
+		
 		totalPrice = new JTextField("Total: $0.00");
-		totalPrice.setBounds(5, Vars.dimensionFullScreen.height - 100, (Vars.dimensionFullScreen.width / 3) - 10, 95);
+		totalPrice.setBounds(5, Vars.dimensionFullScreen.height - 110, (Vars.dimensionFullScreen.width / 3) - 10, 95);
 		totalPrice.setEditable(false);
 		totalPrice.setFont(new Font("Lucida Console", Font.PLAIN, 25));
 		totalPrice.setBackground(Color.white);
