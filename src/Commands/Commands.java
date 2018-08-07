@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -223,5 +224,14 @@ public class Commands {
 		}
 
 		return ArrayList;
+	}
+	
+	public static void openKeyboard() {
+		try {
+			Runtime.getRuntime().exec("cmd /c C:\\Windows\\System32\\osk.exe");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 }
