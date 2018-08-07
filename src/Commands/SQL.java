@@ -50,9 +50,10 @@ public class SQL {
 	public static void closeConnection() {
 		try {
 			conn.close();
+			System.out.println("Connection Closed");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.err.println("Somehow your dumbass still cant close servers");
+			System.err.println("Closing Connection Failed :(");
 		}
 	}
 
