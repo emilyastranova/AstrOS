@@ -31,7 +31,7 @@ public class Add{
 		buttonFinished = new MenuItemButton(Vars.colorDefaultButton, Vars.colorDefaultFont);
 		buttonFinished.setText("Finished");
 		buttonFinished.setFont(Commands.changeFontSize(15));
-		buttonFinished.setBounds(Vars.dimensionFullScreen.width - 125, Vars.dimensionFullScreen.height - 90, 100, 50);
+		buttonFinished.setBounds(Vars.dimensionFullScreen.width - 400, Vars.dimensionFullScreen.height - 90, 100, 50);
 		buttonFinished.addActionListener(new ActionListener() {
 
 			@Override
@@ -43,40 +43,7 @@ public class Add{
 		});
 		panel.add(buttonFinished);
 		
-		panel.addMouseListener(new MouseListener() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				Commands.switchPanels(Main.panelAdd, Main.panelHome);
-				Home.panel.add(Ticket.panel);
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-
-			items = LocalSQL.Opt_ALL;
+		items = LocalSQL.Opt_ALL;
 
 		ArrayList<MenuItemButton> itemButtons = new ArrayList<MenuItemButton>();
 		for (int i = 0; i < (items.size() / 9) + 1; i++) {

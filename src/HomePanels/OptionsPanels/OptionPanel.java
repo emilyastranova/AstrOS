@@ -35,7 +35,6 @@ public class OptionPanel {
 		tables = LocalSQL.AllTables;
 		
 		if (!nameOfItem.equals("NOTHING") && tables.contains("Opt_" + nameOfItem)) {
-			//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!CHANGE THIS!!!!!!!!!!!!!!
 			items = LocalSQL.returnOptionsByName(nameOfItem);
 		} else {
 			items = new ArrayList<ArrayList<String>>();
@@ -44,10 +43,10 @@ public class OptionPanel {
 		panel.removeAll();
 		ArrayList<MenuItemButton> itemButtons = new ArrayList<MenuItemButton>();
 		for (int x = 0; x < items.size(); x++) {
-			if (x < 8) {
+			if (x < 7) {
 				itemButtons.add(Commands.createOptionItemButton(items.get(x).get(0), 5 + (x * 100), 5));
 			} else {
-				itemButtons.add(Commands.createOptionItemButton(items.get(x).get(0), 5 + ((x - 8) * 100), 110));
+				itemButtons.add(Commands.createOptionItemButton(items.get(x).get(0), 5 + ((x - 7) * 100), 110));
 			}	
 			String nameOfOption = items.get(x).get(0);
 			String priceOfOption = items.get(x).get(1);

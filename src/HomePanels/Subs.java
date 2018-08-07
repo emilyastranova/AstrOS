@@ -16,14 +16,14 @@ import Vars.Vars;
 
 public class Subs {
 	public static JPanel panel = new JPanel();
-	public static ArrayList<ArrayList<String>> entrees;
-	public static ArrayList<MenuItemButton> entreeButtons = new ArrayList<MenuItemButton>();
+	public static ArrayList<ArrayList<String>> subs;
+	public static ArrayList<MenuItemButton> subButtons = new ArrayList<MenuItemButton>();
 
 	public static void createView(Graphics g) {
 		panel.setLayout(null);
 		panel.setBackground(Vars.colorMainBG);
 
-		entrees = LocalSQL.Subs;
+		subs = LocalSQL.Subs;
 		
 		JLabel label = new JLabel("Subs");
 		label.setBounds(5, 20, 200, 80);
@@ -37,20 +37,20 @@ public class Subs {
 	}
 	
 	public static void setSubsFromSQL() {
-		for (int i = 0; i < entrees.size(); i++) {
+		for (int i = 0; i < subs.size(); i++) {
 			if (i < 4) {
-				entreeButtons.add(Commands.createMenuItemButton(entrees.get(i).get(0), ((i * 210) + 5), 100,Double.parseDouble(entrees.get(i).get(1))));
+				subButtons.add(Commands.createMenuItemButton(subs.get(i).get(0), ((i * 210) + 5), 100,Double.parseDouble(subs.get(i).get(1))));
 			} else if (i < 8) {				
-				entreeButtons.add(Commands.createMenuItemButton(entrees.get(i).get(0), (((i - 4) * 210) + 5), 210,Double.parseDouble(entrees.get(i).get(1))));
+				subButtons.add(Commands.createMenuItemButton(subs.get(i).get(0), (((i - 4) * 210) + 5), 210,Double.parseDouble(subs.get(i).get(1))));
 			} else {
-				entreeButtons.add(Commands.createMenuItemButton(entrees.get(i).get(0), (((i - 8) * 210) + 5), 320,Double.parseDouble(entrees.get(i).get(1))));
+				subButtons.add(Commands.createMenuItemButton(subs.get(i).get(0), (((i - 8) * 210) + 5), 320,Double.parseDouble(subs.get(i).get(1))));
 			}
 		}
 
-		for (int i = 0; i < entreeButtons.size(); i++) {
-			String nameOfItem = entreeButtons.get(i).getName();
-			double priceOfItem = entreeButtons.get(i).getPrice();
-			entreeButtons.get(i).addActionListener(new ActionListener() {
+		for (int i = 0; i < subButtons.size(); i++) {
+			String nameOfItem = subButtons.get(i).getName();
+			double priceOfItem = subButtons.get(i).getPrice();
+			subButtons.get(i).addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -58,7 +58,7 @@ public class Subs {
 					 Commands.addToTicket(Commands.ticketSpacing(nameOfItem, priceOfItem),priceOfItem);
 					 OptionPanel.updatePanel();
 				}});
-			panel.add(entreeButtons.get(i));
+			panel.add(subButtons.get(i));
 		}
 	}
 }

@@ -46,37 +46,29 @@ public class LocalSQL {
 			SubOptions.add(new MenuOptions(Subs.get(i).get(0)));
 		}
 		
-		AllTables = new ArrayList<String>();
-		try {
-			SQL.rs = SQL.stmt.executeQuery("SELECT table_name FROM information_schema.tables WHERE table_schema ='u888023296_pizza';");
-			while(SQL.rs.next()) {
-				AllTables.add(SQL.rs.getString(1));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		AllTables = SQL.returnAllContents();
 		
 		SQL.closeConnection();
 	}
 
 	public static ArrayList<ArrayList<String>> returnOptionsByName(String name) {
 		for (int i = 0; i < AppetizerOptions.size(); i++) {
-			if (AppetizerOptions.get(i).getName() == name) {
+			if (AppetizerOptions.get(i).getName().equals(name)) {
 				return AppetizerOptions.get(i).getOptions();
 			}
 		}
 		for (int i = 0; i < EntreeOptions.size(); i++) {
-			if (EntreeOptions.get(i).getName() == name) {
+			if (EntreeOptions.get(i).getName().equals(name)) {
 				return EntreeOptions.get(i).getOptions();
 			}
 		}
 		for (int i = 0; i < PizzaOptions.size(); i++) {
-			if (PizzaOptions.get(i).getName() == name) {
+			if (PizzaOptions.get(i).getName().equals(name)) {
 				return PizzaOptions.get(i).getOptions();
 			}
 		}
 		for (int i = 0; i < SubOptions.size(); i++) {
-			if (SubOptions.get(i).getName() == name) {
+			if (SubOptions.get(i).getName().equals(name)) {
 				return SubOptions.get(i).getOptions();
 			}
 		}

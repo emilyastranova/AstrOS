@@ -16,14 +16,14 @@ import Vars.Vars;
 
 public class Pizza {
 	public static JPanel panel = new JPanel();
-	public static ArrayList<ArrayList<String>> entrees;
-	public static ArrayList<MenuItemButton> entreeButtons = new ArrayList<MenuItemButton>();
+	public static ArrayList<ArrayList<String>> pizza;
+	public static ArrayList<MenuItemButton> pizzaButtons = new ArrayList<MenuItemButton>();
 
 	public static void createView(Graphics g) {
 		panel.setLayout(null);
 		panel.setBackground(Vars.colorMainBG);
 
-		entrees = LocalSQL.Pizza;
+		pizza = LocalSQL.Pizza;
 		
 		JLabel label = new JLabel("Pizza");
 		label.setBounds(5, 20, 200, 80);
@@ -37,20 +37,20 @@ public class Pizza {
 	}
 	
 	public static void setPizzaFromSQL() {
-		for (int i = 0; i < entrees.size(); i++) {
+		for (int i = 0; i < pizza.size(); i++) {
 			if (i < 4) {
-				entreeButtons.add(Commands.createMenuItemButton(entrees.get(i).get(0), ((i * 210) + 5), 100,Double.parseDouble(entrees.get(i).get(1))));
+				pizzaButtons.add(Commands.createMenuItemButton(pizza.get(i).get(0), ((i * 210) + 5), 100,Double.parseDouble(pizza.get(i).get(1))));
 			} else if (i < 8) {				
-				entreeButtons.add(Commands.createMenuItemButton(entrees.get(i).get(0), (((i - 4) * 210) + 5), 210,Double.parseDouble(entrees.get(i).get(1))));
+				pizzaButtons.add(Commands.createMenuItemButton(pizza.get(i).get(0), (((i - 4) * 210) + 5), 210,Double.parseDouble(pizza.get(i).get(1))));
 			} else {
-				entreeButtons.add(Commands.createMenuItemButton(entrees.get(i).get(0), (((i - 8) * 210) + 5), 320,Double.parseDouble(entrees.get(i).get(1))));
+				pizzaButtons.add(Commands.createMenuItemButton(pizza.get(i).get(0), (((i - 8) * 210) + 5), 320,Double.parseDouble(pizza.get(i).get(1))));
 			}
 		}
 
-		for (int i = 0; i < entreeButtons.size(); i++) {
-			String nameOfItem = entreeButtons.get(i).getName();
-			double priceOfItem = entreeButtons.get(i).getPrice();
-			entreeButtons.get(i).addActionListener(new ActionListener() {
+		for (int i = 0; i < pizzaButtons.size(); i++) {
+			String nameOfItem = pizzaButtons.get(i).getName();
+			double priceOfItem = pizzaButtons.get(i).getPrice();
+			pizzaButtons.get(i).addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -58,7 +58,7 @@ public class Pizza {
 					 Commands.addToTicket(Commands.ticketSpacing(nameOfItem, priceOfItem),priceOfItem);
 					 OptionPanel.updatePanel();
 				}});
-			panel.add(entreeButtons.get(i));
+			panel.add(pizzaButtons.get(i));
 		}
 	}
 }

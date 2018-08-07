@@ -35,7 +35,7 @@ public class Commands {
 		int strLen = name.length();
 		int priceLen = price.length();
 		int totalLen = strLen + priceLen;
-		int numOfSpaces = 40 - totalLen;
+		int numOfSpaces = 36 - totalLen;
 
 		for (int i = 0; i < numOfSpaces; i++) {
 			spaces += " ";
@@ -58,9 +58,9 @@ public class Commands {
 		int totalLen = strLen + priceLen;
 		int numOfSpaces;
 		if (isOption) {
-			numOfSpaces = 34 - totalLen;
+			numOfSpaces = 30 - totalLen;
 		} else {
-			numOfSpaces = 40 - totalLen;
+			numOfSpaces = 36 - totalLen;
 		}
 
 		for (int i = 0; i < numOfSpaces; i++) {
@@ -158,7 +158,7 @@ public class Commands {
 	public static void createAddandRemoveButtons() {
 		buttonAdd = new MenuItemButton(Color.GREEN, Vars.colorDefaultFont);
 		buttonAdd.setButtonText(Commands.buttonText("ADD +", "25px"));
-		buttonAdd.setBounds(805, 5, 105, 100);
+		buttonAdd.setBounds(755, 5, 105, 100);
 		buttonAdd.setMargin(new Insets(0, 0, 0, 0));
 		buttonAdd.setFont(Commands.changeFontSize(15));
 		buttonAdd.addActionListener(new ActionListener() {
@@ -171,7 +171,7 @@ public class Commands {
 		//THIS IS THE REMOVE BUTTON
 		buttonRemove = new MenuItemButton(Color.RED, Vars.colorDefaultFont);
 		buttonRemove.setButtonText(Commands.buttonText("REMOVE -", "25px"));
-		buttonRemove.setBounds(805, 110, 105, 100);
+		buttonRemove.setBounds(755, 110, 105, 100);
 		buttonRemove.setMargin(new Insets(0, 0, 0, 0));
 		buttonRemove.setFont(Commands.changeFontSize(15));
 		buttonRemove.addActionListener(new ActionListener() {
