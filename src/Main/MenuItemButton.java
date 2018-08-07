@@ -1,6 +1,7 @@
 package Main;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -31,7 +32,6 @@ public class MenuItemButton extends JButton implements ActionListener, MouseList
 		this.normalColor = normalRedColor;
 		this.lightColor = normalRedColor.brighter();
 		this.darkColor = normalRedColor.darker();
-
 		addActionListener(this);
 		addMouseListener(this);
 		setContentAreaFilled(false);

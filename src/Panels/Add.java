@@ -1,7 +1,5 @@
 package Panels;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,8 +7,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Commands.Commands;
@@ -37,6 +33,15 @@ public class Add{
 		buttonFinished.setText("Finished");
 		buttonFinished.setFont(Commands.changeFontSize(15));
 		buttonFinished.setBounds(Vars.dimensionFullScreen.width - 125, Vars.dimensionFullScreen.height - 90, 100, 50);
+		buttonFinished.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Commands.switchPanels(Main.panelAdd, Main.panelHome);
+				Home.panel.add(Ticket.panel);
+			}
+			
+		});
 		panel.add(buttonFinished);
 		
 		panel.addMouseListener(new MouseListener() {

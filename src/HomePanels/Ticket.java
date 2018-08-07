@@ -39,16 +39,15 @@ public class Ticket {
 		buttonSeeMe = new MenuItemButton(Vars.colorDefaultButton, Vars.colorDefaultFont);
 		buttonSeeMe.setText("SEE ME");
 		buttonSeeMe.setFont(Commands.changeFontSize(15));
-		buttonSeeMe.setBounds(150, 100, 100, 50);
+		buttonSeeMe.setBounds(375, 990, 100, 50);
 		buttonSeeMe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Commands.addToTicket(Commands.ticketSpacing("SEE ME", Double.parseDouble("0.00")), Double.parseDouble("0.00"));
 			}
 		});
-		panel.add(buttonSeeMe);
 		
 		totalPrice = new JTextField("Total: $0.00");
-		totalPrice.setBounds(5, Vars.dimensionFullScreen.height - 110, (Vars.dimensionFullScreen.width / 3) - 10, 95);
+		totalPrice.setBounds(5, Vars.dimensionFullScreen.height - 110, (Vars.dimensionFullScreen.width / 3) - 300, 90);
 		totalPrice.setEditable(false);
 		totalPrice.setFont(new Font("Lucida Console", Font.PLAIN, 25));
 		totalPrice.setBackground(Color.white);
@@ -62,10 +61,11 @@ public class Ticket {
 		scrollPane.setBounds(5, 0, (Vars.dimensionFullScreen.width / 3) - 10, Vars.dimensionFullScreen.height - 100);
 		itemsPanel.setBounds(10, 5, (Vars.dimensionFullScreen.width / 3) - 5, Vars.dimensionFullScreen.height - 5);
 		panel.setBounds((Vars.dimensionFullScreen.width * 2 / 3), 0, (Vars.dimensionFullScreen.width / 3),Vars.dimensionFullScreen.height);
-		refresh();
 		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 		panel.add(scrollPane);
 		panel.add(totalPrice);
+		panel.add(buttonSeeMe);
+		refresh();
 	}
 	
 	public static void removeSelectedItem() {
