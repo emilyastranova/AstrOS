@@ -33,7 +33,7 @@ public class OptionPanel {
 	public static void updatePanel() {
 		tables = SQL.returnAllContents();
 		
-		if (!nameOfItem.equals("NOTHING") && tables.contains("Opt_" + nameOfItem))
+		if (!nameOfItem.equals("NOTHING") && tables.contains("Opt_" + nameOfItem)) 
 			items = SQL.returnTableContents("Opt_" + nameOfItem, "Options");
 		else
 			items = new ArrayList<String>();
