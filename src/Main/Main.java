@@ -44,7 +44,6 @@ public class Main extends JFrame {
 		setResizable(false);
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				System.out.println("Connection Closed");
 				System.exit(0);
 			}
 		});

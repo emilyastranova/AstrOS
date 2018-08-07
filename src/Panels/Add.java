@@ -14,14 +14,14 @@ import Commands.SQL;
 import HomePanels.Ticket;
 import Main.Main;
 import Main.MenuItemButton;
+import Vars.LocalSQL;
 import Vars.Vars;
 
 public class Add{
 
 	public static JPanel panel = new JPanel();
 	public static String table = "Opt_ALL";
-	public static ArrayList<String> items;
-	public static ArrayList<String> tables;
+	public static ArrayList<ArrayList<String>> items;
 	public static MenuItemButton buttonFinished;
 
 	public static void createView(Graphics g) {
@@ -76,25 +76,21 @@ public class Add{
 				
 			}
 		});
-		tables = SQL.returnAllContents();
 
-		if (tables.contains(table)) {
-			items = SQL.returnTableContents(table, "Options");
-		} else {
-			items = new ArrayList<String>();
-		}
+			items = LocalSQL.Opt_ALL;
 
 		ArrayList<MenuItemButton> itemButtons = new ArrayList<MenuItemButton>();
 		for (int i = 0; i < (items.size() / 9) + 1; i++) {
 			for (int j = 0; j < 9; j++) {
 				int currentIndex = (i * 9) + j;
 				if (!(currentIndex >= items.size())) {
-					itemButtons.add(Commands.createOptionItemButton(items.get(currentIndex), 5 + (j * 100), 5 + (i * 105)));
-
-					String nameOfOption = items.get(currentIndex);
+					itemButtons.add(Commands.createOptionItemButton(items.get(currentIndex).get(0), 5 + (j * 100), 5 + (i * 105)));
+					itemButtons.get(currentIndex).setPrice(Double.parseDouble(items.get(currentIndex).get(1)));
+					String nameOfOption = items.get(currentIndex).get(0);
+					String priceOfItem = items.get(currentIndex).get(1);
 					itemButtons.get(currentIndex).addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							Commands.addToTicket(Commands.ticketSpacing(nameOfOption, Double.parseDouble(SQL.returnPriceOfOption(table, nameOfOption)), true),Double.parseDouble(SQL.returnPriceOfOption(table, nameOfOption)));
+							Commands.addToTicket(Commands.ticketSpacing(nameOfOption, Double.parseDouble(priceOfItem), true),Double.parseDouble(priceOfItem));
 						}
 					});
 					panel.add(itemButtons.get(currentIndex));
