@@ -9,7 +9,7 @@ public class Vars {
 	public static final String Title = "AstroOS";
 	public static final String MasterPassword = "tt";
 
-	public static final Dimension dimensionFullScreen = Toolkit.getDefaultToolkit().getScreenSize();
+	public static final Dimension dimensionFullScreen = new Dimension(1280, 720);//Toolkit.getDefaultToolkit().getScreenSize();
 
 	public static final Color colorMainBG = new Color(250, 250, 250);
 	public static final Color colorDefaultButton = new Color(250, 250, 250);

@@ -1,6 +1,9 @@
 package Main;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Toolkit;
+import java.awt.Window;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -47,6 +50,7 @@ public class Main extends JFrame {
 				System.exit(0);
 			}
 		});
+		
 		pack();
 
 	}
@@ -69,6 +73,13 @@ public class Main extends JFrame {
 
 		getContentPane().add(panelHome);
 	}
+	
+	public static void centerWindow(Window frame) {
+	      Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+	      int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+	      int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+	      frame.setLocation(x, y);
+	  }
 
 	public static void main(String[] Args) {
 		new LocalSQL();
@@ -88,6 +99,7 @@ public class Main extends JFrame {
 			public void run() {
 				MainFrame = new Main();
 				MainFrame.setVisible(true);
+				centerWindow(MainFrame);
 			}
 		});
 
