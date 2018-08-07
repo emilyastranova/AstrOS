@@ -1,7 +1,6 @@
 package Main;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -16,6 +15,10 @@ import javax.swing.JButton;
 ;
 
 public class MenuItemButton extends JButton implements ActionListener, MouseListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private boolean hovered = false;
 	private boolean clicked = false;
 

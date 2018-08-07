@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 
 import Vars.Vars;
 import Commands.Commands;
-import Commands.SQL;
 import Main.Main;
 
 public class StartUp {

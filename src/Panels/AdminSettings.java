@@ -4,7 +4,6 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-import Commands.Commands;
 import Vars.Vars;
 
 public class AdminSettings {

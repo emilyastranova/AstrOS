@@ -3,7 +3,6 @@ package Vars;
 import java.util.ArrayList;
 
 import Commands.SQL;
-import Main.MenuItem;
 
 public class LocalSQL {
 

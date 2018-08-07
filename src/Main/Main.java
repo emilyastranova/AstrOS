@@ -71,7 +71,6 @@ public class Main extends JFrame {
 	}
 
 	public static void main(String[] Args) {
-		LocalSQL database = new LocalSQL();
 		if (!SQL.isConnected) {
 			System.exit(0);
 		}

@@ -4,13 +4,10 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.BorderFactory;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import Commands.SQL;
 import HomePanels.OptionsPanels.Blank;
 import HomePanels.OptionsPanels.OptionPanel;
-import Main.MenuItemButton;
 import Vars.Vars;
 
 public class Options {

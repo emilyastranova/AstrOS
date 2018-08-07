@@ -17,7 +17,6 @@ import javax.swing.JTextField;
 import Commands.Commands;
 import Main.MenuItem;
 import Main.MenuItemButton;
-import Panels.Add;
 import Vars.Vars;
 
 public class Ticket {
