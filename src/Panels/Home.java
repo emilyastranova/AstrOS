@@ -11,9 +11,10 @@ import HomePanels.Appetizers;
 import HomePanels.Entrees;
 import HomePanels.Options;
 import HomePanels.Pizza;
+import HomePanels.SeeMe;
 import HomePanels.Subs;
 import HomePanels.Ticket;
-import Main.*;
+import Main.MenuItemButton;
 import Vars.Vars;
 
 public class Home {

@@ -1,5 +1,6 @@
 package Main;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Toolkit;
@@ -8,12 +9,14 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import Commands.SQL;
+import HomePanels.SeeMe;
 import Panels.Add;
 import Panels.AdminLogin;
 import Panels.AdminSettings;
@@ -35,6 +38,7 @@ public class Main extends JFrame {
 	public static JPanel panelAdminSettings;
 	public static JPanel panelLoading;
 	public static JPanel panelAdd;
+	public static JLayeredPane seeMe;
 
 	public Main() {
 		createView(getGraphics());

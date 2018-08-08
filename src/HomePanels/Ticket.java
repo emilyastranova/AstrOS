@@ -44,7 +44,7 @@ public class Ticket {
 		buttonSeeMe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Commands.openKeyboard();
-				Commands.addToTicket(Commands.ticketSpacing("SEE ME", Double.parseDouble("0.00")), Double.parseDouble("0.00"));
+				Commands.displaySeeMe();
 			}
 		});
 		
