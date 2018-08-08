@@ -20,7 +20,6 @@ public class Login extends JPanel {
 		setLayout(null);
 		setBackground(Color.WHITE);
 		setLocation(0, 100);
-		setPreferredSize(new Dimension(Vars.dimensionFullScreen.width / 3, (LocalSQL.Logins.size() * 75) + 40));
 		
 		refresh();
 	}
@@ -28,6 +27,8 @@ public class Login extends JPanel {
 	public void refresh() {
 		LocalSQL.refresh();
 		removeAll();
+		setPreferredSize(new Dimension(Vars.dimensionFullScreen.width / 3, (LocalSQL.Logins.size() * 75) + 40));
+		
 		buttons = new ArrayList<AdminLoginButton>();
 		for (int i = 0; i < LocalSQL.Logins.size(); i++) {
 			buttons.add(new AdminLoginButton(i));

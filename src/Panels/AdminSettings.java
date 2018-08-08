@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,6 +16,7 @@ import AdminPanels.Login;
 import AdminPanels.MenuItems;
 import AdminPanels.Options;
 import Commands.Commands;
+import Commands.SQL;
 import Vars.Vars;
 
 public class AdminSettings {
@@ -67,7 +69,7 @@ public class AdminSettings {
 
 		JScrollPane scrollMenuItems = new JScrollPane(panelMenuItems);
 		scrollMenuItems.setBorder(null);
-		scrollMenuItems.setBounds(Vars.dimensionFullScreen.width / 3, 100, Vars.dimensionFullScreen.width / 3, Vars.dimensionFullScreen.height - 100);
+		scrollMenuItems.setBounds(Vars.dimensionFullScreen.width / 3, 100, Vars.dimensionFullScreen.width / 3, Vars.dimensionFullScreen.height - 200);
 		scrollMenuItems.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollMenuItems.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollMenuItems.getVerticalScrollBar().setUnitIncrement(16);
@@ -75,24 +77,47 @@ public class AdminSettings {
 		
 		JScrollPane scrollOptions = new JScrollPane(panelOptions);
 		scrollOptions.setBorder(null);
-		scrollOptions.setBounds(Vars.dimensionFullScreen.width * 2/3, 100, Vars.dimensionFullScreen.width / 3, Vars.dimensionFullScreen.height - 100);
+		scrollOptions.setBounds(Vars.dimensionFullScreen.width * 2/3, 100, Vars.dimensionFullScreen.width / 3, Vars.dimensionFullScreen.height - 200);
 		scrollOptions.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollOptions.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollOptions.getVerticalScrollBar().setUnitIncrement(16);
 		panel.add(scrollOptions);
 		
-		AdminButton buttonRemove = new AdminButton();
-		buttonRemove.setText("Remove");
-		buttonRemove.setFont(Commands.changeFontSize(20, Vars.fontGoogle));
-		buttonRemove.setBorder(null);
-		buttonRemove.setBounds(20, Vars.dimensionFullScreen.height - 95, 100, 60);
-		buttonRemove.addActionListener(new ActionListener() {
+		AdminButton buttonLoginRemove = new AdminButton();
+		buttonLoginRemove.setText("REMOVE");
+		buttonLoginRemove.setFont(Commands.changeFontSize(20, Vars.fontGoogle));
+		buttonLoginRemove.setBorder(null);
+		buttonLoginRemove.setBounds(20, Vars.dimensionFullScreen.height - 95, 100, 60);
+		buttonLoginRemove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login.removeLogins();
 				panelLogin.refresh();
 			}
 		});
-		panel.add(buttonRemove);
+		panel.add(buttonLoginRemove);
 		
+		AdminButton buttonLoginAdd = new AdminButton();
+		buttonLoginAdd.setText("ADD");
+		buttonLoginAdd.setFont(Commands.changeFontSize(20, Vars.fontGoogle));
+		buttonLoginAdd.setBorder(null);
+		buttonLoginAdd.setBounds(150, Vars.dimensionFullScreen.height - 95, 100, 60);
+		buttonLoginAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//ADD BUTTON LISTENER - goes to AddLogin Panel
+			}
+		});
+		panel.add(buttonLoginAdd);
+		
+		AdminButton buttonLoginRefresh = new AdminButton();
+		buttonLoginRefresh.setText("REFRESH");
+		buttonLoginRefresh.setFont(Commands.changeFontSize(20, Vars.fontGoogle));
+		buttonLoginRefresh.setBorder(null);
+		buttonLoginRefresh.setBounds(280, Vars.dimensionFullScreen.height - 95, 100, 60);
+		buttonLoginRefresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panelLogin.refresh();
+			}
+		});
+		panel.add(buttonLoginRefresh);
 	}
 }

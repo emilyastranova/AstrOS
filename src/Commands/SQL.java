@@ -33,7 +33,7 @@ public class SQL {
 			System.out.println("Connection Failed");
 			isConnected = false;
 		}
-		
+
 		try {
 			stmt.setQueryTimeout(300);
 		} catch (SQLException e) {
@@ -42,33 +42,33 @@ public class SQL {
 		}
 
 	}
-	
+
 	public static void closeConnection() {
 		try {
 			conn.close();
-			
+
 			System.out.println("Connection Closed");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.err.println("Closing Connection Failed :(");
 		}
 	}
-	
+
 	public static ArrayList<String> returnTableContents(String Table, String... Columns) {
 		ArrayList<String> array = new ArrayList<String>();
 		try {
 			rs = stmt.executeQuery("SELECT * FROM `" + Table + "`;");
-			while(rs.next()) {
+			while (rs.next()) {
 				for (int i = 0; i < Columns.length; i++) {
 					array.add(rs.getString(Columns[i]));
 				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}		
+		}
 		return array;
 	}
-	
+
 	public static ArrayList<ArrayList<String>> returnTable(String Table, String... Columns) {
 		ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
 		try {
@@ -80,29 +80,30 @@ public class SQL {
 				}
 			}
 		} catch (SQLException e) {
-		//	e.printStackTrace();
-		}		
+			// e.printStackTrace();
+		}
 		return array;
 	}
-	
-	public static ArrayList<String> returnAllContents(){
+
+	public static ArrayList<String> returnAllContents() {
 		ArrayList<String> array = new ArrayList<String>();
 		try {
-			rs = stmt.executeQuery("SELECT table_name FROM information_schema.tables WHERE table_schema ='u888023296_pizza';");
-			while(rs.next()) {
-					array.add(rs.getString(1));
+			rs = stmt.executeQuery(
+					"SELECT table_name FROM information_schema.tables WHERE table_schema ='u888023296_pizza';");
+			while (rs.next()) {
+				array.add(rs.getString(1));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}		
+		}
 		return array;
 	}
-	
+
 	public static String returnPriceOfItem(String Table, String Item) {
 		String index = null;
 		try {
-			rs = stmt.executeQuery("SELECT `Price` FROM `"+ Table + "` WHERE `Items` = \"" + Item + "\"");
-			if(rs.next()) {
+			rs = stmt.executeQuery("SELECT `Price` FROM `" + Table + "` WHERE `Items` = \"" + Item + "\"");
+			if (rs.next()) {
 				index = rs.getString(1);
 			}
 		} catch (SQLException e) {
@@ -110,14 +111,14 @@ public class SQL {
 			e.printStackTrace();
 		}
 		return index;
-		
+
 	}
-	
+
 	public static String returnPriceOfOption(String Table, String Item) {
 		String index = null;
 		try {
-			rs = stmt.executeQuery("SELECT `Price` FROM `"+ Table + "` WHERE `Options` = \"" + Item + "\"");
-			if(rs.next()) {
+			rs = stmt.executeQuery("SELECT `Price` FROM `" + Table + "` WHERE `Options` = \"" + Item + "\"");
+			if (rs.next()) {
 				index = rs.getString(1);
 			}
 		} catch (SQLException e) {
@@ -125,14 +126,39 @@ public class SQL {
 			e.printStackTrace();
 		}
 		return index;
-		
+
 	}
-	
+
 	public static void removeRow(String Table, String Column, String Value) {
 		try {
-			int x = stmt.executeUpdate("DELETE FROM `" + Table + "` WHERE  `" + Column + "`='" + Value + "';");
-			System.out.println("DELETE FROM `" + Table + "` WHERE  `" + Column + "`='" + Value + "';");
-			System.out.println(x);
+			stmt.executeUpdate("DELETE FROM `" + Table + "` WHERE  `" + Column + "`='" + Value + "';");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public static void addRow(String Table, ArrayList<String> Columns, ArrayList<String> Values) {
+		String statement = "INSERT INTO `" + Table + "` (";
+
+		for (int i = 0; i < Columns.size(); i++) {
+			if (Columns.size() - 1 == i) {
+				statement += "`" + Columns.get(i) + "`) VALUES (";
+			} else {
+				statement += "`" + Columns.get(i) + "`, ";
+			}
+		}
+
+		for (int i = 0; i < Values.size(); i++) {
+			if (Values.size() - 1 == i) {
+				statement += "'" + Values.get(i) + "');";
+			} else {
+				statement += "'" + Values.get(i) + "', ";
+			}
+		}
+
+		try {
+			stmt.executeUpdate(statement);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -21,17 +21,12 @@ import Main.MenuItemButton;
 import Vars.Vars;
 
 public class SeeMe {
-	/**
-	 * 
-	 */
 
 	public static JFrame frame = new JFrame();
 	private JLayeredPane lpane = new JLayeredPane();
 	private JPanel panel = new JPanel();
 	public static JTextField input = new JTextField();
 	public static MenuItemButton submit = new MenuItemButton(Color.GREEN, Color.BLACK);
-
-	private static final long serialVersionUID = 1L;
 
 	public SeeMe() {
 		frame.setPreferredSize(new Dimension(Vars.dimensionFullScreen.width - 300, Vars.dimensionFullScreen.height - 300));
