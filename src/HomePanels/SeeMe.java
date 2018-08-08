@@ -6,7 +6,10 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
@@ -68,9 +71,42 @@ public class SeeMe {
 		});
 		
 		panel.add(text);
-		panel.add(input);
 		panel.add(submit);
-
+		panel.add(input);
+		
+		input.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+					Commands.closeKeyboard();
+					if(!input.getText().equals(""))
+					Commands.addToTicket(Commands.ticketSpacing(input.getText(), Double.parseDouble("0.00"), true), Double.parseDouble("0.00"));
+					System.out.println("Submit button pressed");
+					frame.dispose();
+				}
+			}
+		});
+		
+		frame.addWindowListener( new WindowAdapter() {
+		    public void windowOpened( WindowEvent e ){
+		        input.requestFocus();
+		    }
+		}); 
+		
 		lpane.add(panel, new Integer(0), 0);
 		lpane.setLayout(null);
 		frame.pack();
@@ -80,6 +116,8 @@ public class SeeMe {
 		int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
 		frame.setLocation(x, y - 100);
 		frame.setTitle("Input \"See Me\" Reason");
+		
+		
 	}
 
 }
