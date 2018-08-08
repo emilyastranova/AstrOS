@@ -74,8 +74,6 @@ public class Main extends JFrame {
 		panelAdminLogin = AdminLogin.panel;
 		AdminSettings.createView(getGraphics());
 		panelAdminSettings = AdminSettings.panel;
-		Loading.createView(getGraphics());
-		panelLoading = Loading.panel;
 
 		getContentPane().add(panelAdminSettings);
 	}

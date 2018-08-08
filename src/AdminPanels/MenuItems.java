@@ -1,20 +1,60 @@
 package AdminPanels;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Commands.Commands;
+import Vars.LocalSQL;
+import Vars.Vars;
+
 public class MenuItems extends JPanel {
 	
+	private static final long serialVersionUID = 1L;
+	public static ArrayList<AdminMenuItemButton> buttons;
+	public static int NumOfItems;
+
 	public MenuItems() {
 		setLayout(null);
 		setBackground(Color.white);
+		setLocation(0, 100);		
 		
-		JLabel label = new JLabel("TEST");
-		label.setBounds(50, 50, 200, 50);
-		add(label);
+		refreshAppetizers();
+		refreshSize();
 	}
-
+	
+	public void refreshAppetizers() {
+		LocalSQL.refresh();
+		removeAll();
+		JLabel labelAppetizers = new JLabel("Appetizers");
+		labelAppetizers.setBounds(0, 0, Vars.dimensionFullScreen.width / 3 - 20, 50);
+		labelAppetizers.setFont(Vars.fontGoogle);
+		labelAppetizers.setHorizontalAlignment(JLabel.CENTER);
+		labelAppetizers.setForeground(Color.BLACK);
+		add(labelAppetizers);
+		
+		buttons = new ArrayList<AdminMenuItemButton>();
+		for (int i = 0; i < LocalSQL.Appetizers.size(); i++) {
+			buttons.add(new AdminMenuItemButton(i));
+			buttons.get(i).setText(LocalSQL.Appetizers.get(i).get(0));
+			buttons.get(i).setSize(300, 50);
+			buttons.get(i).setLocation(50, (75*i)+75);
+			buttons.get(i).setBorder(null);
+			buttons.get(i).setFont(Commands.changeFontSize(20, Vars.fontGoogle));
+			buttons.get(i).setPrice(LocalSQL.Appetizers.get(i).get(1));
+			add(buttons.get(i));
+		}
+		setVisible(false);
+		setVisible(true);
+	}
+	
+	public void refreshSize() {
+		NumOfItems = LocalSQL.Appetizers.size() + LocalSQL.Entrees.size() + LocalSQL.Pizza.size() + LocalSQL.Subs.size();
+		setPreferredSize(new Dimension(Vars.dimensionFullScreen.width / 3, (NumOfItems * 75) + 40));
+		
+	}
 }

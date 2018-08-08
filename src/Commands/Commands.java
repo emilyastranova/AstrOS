@@ -264,4 +264,17 @@ public class Commands {
 		SeeMe.input.setText("");
 		SeeMe.input.setVisible(true);
 	}
+	
+	public static void addLogin(String Name, String ID) {
+		ArrayList<String> Columns = new ArrayList<String>();
+		ArrayList<String> Values = new ArrayList<String>();
+		Columns.add("Name");
+		Columns.add("ID");
+		Values.add(Name);
+		Values.add(ID);
+		SQL.initConnect();
+		SQL.addRow("Login", Columns, Values);
+		SQL.closeConnection();
+	}
+	
 }

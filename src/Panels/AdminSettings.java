@@ -5,18 +5,21 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.Timer;
 
+import AdminPanels.AddLogin;
 import AdminPanels.AdminButton;
 import AdminPanels.Login;
 import AdminPanels.MenuItems;
 import AdminPanels.Options;
 import Commands.Commands;
-import Commands.SQL;
+import Main.Main;
 import Vars.Vars;
 
 public class AdminSettings {
@@ -25,10 +28,24 @@ public class AdminSettings {
 	public static Login panelLogin;
 	public static JPanel panelMenuItems;
 	public static JPanel panelOptions;
+	public static AddLogin frameAdd;
 
 	public static void createView(Graphics g) {
 		panel.setLayout(null);
 		panel.setBackground(new Color(20,20,24));
+		
+		JButton button = new JButton(new ImageIcon("Resources/arrow.png"));
+		button.setBounds(5, 5, 80, 80);
+		button.setBorder(null);
+		button.setOpaque(false);
+		button.setContentAreaFilled(false);
+		button.setFocusPainted(false);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Commands.switchPanels(Main.panelAdminSettings, Main.panelStartUp);
+			}
+		});
+		panel.add(button);
 		
 		JLabel labelLogin = new JLabel("Login");
 		labelLogin.setFont(Vars.fontDefault);
@@ -57,6 +74,8 @@ public class AdminSettings {
 		panelLogin = new Login();
 		panelMenuItems = new MenuItems();
 		panelOptions = new Options();
+		frameAdd = new AddLogin();
+		frameAdd.setVisible(false);
 		
 		
 		JScrollPane scrollLogin = new JScrollPane(panelLogin);
@@ -90,8 +109,16 @@ public class AdminSettings {
 		buttonLoginRemove.setBounds(20, Vars.dimensionFullScreen.height - 95, 100, 60);
 		buttonLoginRemove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Login.removeLogins();
-				panelLogin.refresh();
+				AdminPanels.Loading temp = new AdminPanels.Loading();
+				Timer tempTime =  new Timer(100, new ActionListener() {
+		                public void actionPerformed(ActionEvent evt) {
+		                	Login.removeLogins();
+		                	panelLogin.refresh();
+		                	temp.dispose();
+		                }
+		            });
+				tempTime.start();
+				tempTime.setRepeats(false);
 			}
 		});
 		panel.add(buttonLoginRemove);
@@ -103,7 +130,7 @@ public class AdminSettings {
 		buttonLoginAdd.setBounds(150, Vars.dimensionFullScreen.height - 95, 100, 60);
 		buttonLoginAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//ADD BUTTON LISTENER - goes to AddLogin Panel
+				frameAdd.setVisible(true);
 			}
 		});
 		panel.add(buttonLoginAdd);
@@ -115,7 +142,15 @@ public class AdminSettings {
 		buttonLoginRefresh.setBounds(280, Vars.dimensionFullScreen.height - 95, 100, 60);
 		buttonLoginRefresh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				panelLogin.refresh();
+				AdminPanels.Loading temp = new AdminPanels.Loading();
+				Timer tempTime =  new Timer(100, new ActionListener() {
+		                public void actionPerformed(ActionEvent evt) {
+		                	panelLogin.refresh();
+		                	temp.dispose();
+		                }
+		            });
+				tempTime.start();
+				tempTime.setRepeats(false);
 			}
 		});
 		panel.add(buttonLoginRefresh);
