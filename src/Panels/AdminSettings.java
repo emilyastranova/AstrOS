@@ -10,14 +10,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import AdminPanels.*;
 import Vars.Vars;
 
 public class AdminSettings {
 
 	public static JPanel panel = new JPanel();
-	public static JPanel panelLogin = new JPanel();
-	public static JPanel panelMenuItems = new JPanel();
-	public static JPanel panelOptions = new JPanel();
+	public static JPanel panelLogin;
+	public static JPanel panelMenuItems;
+	public static JPanel panelOptions;
 
 	public static void createView(Graphics g) {
 		panel.setLayout(null);
@@ -41,9 +42,13 @@ public class AdminSettings {
 		labelOptions.setBounds(Vars.dimensionFullScreen.width * 5/6 - 100, 10, 200, 100);
 		panel.add(labelOptions);
 
-		createPanelLogin(g);
-		createPanelMenuItems(g);
-		createPanelOptions(g);		
+		Login.createView(g);
+		MenuItems.createView(g);
+		Options.createView(g);
+		panelLogin = Login.panel;
+		panelMenuItems = MenuItems.panel;
+		panelOptions = Options.panel;
+		
 		
 		JScrollPane scrollLogin = new JScrollPane(panelLogin);
 		scrollLogin.setBounds(0, 100, Vars.dimensionFullScreen.width / 3, Vars.dimensionFullScreen.height - 100);
@@ -63,32 +68,5 @@ public class AdminSettings {
 		scrollOptions.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		panel.add(scrollOptions);
 		
-	}
-	
-	public static void createPanelLogin(Graphics g) {
-		panelLogin.setLayout(null);
-		panelLogin.setBackground(Color.YELLOW);
-		
-		JLabel label = new JLabel("TEST");
-		label.setBounds(50, 50, 200, 50);
-		panelLogin.add(label);
-	}
-	
-	public static void createPanelMenuItems(Graphics g) {
-		panelMenuItems.setLayout(null);
-		panelMenuItems.setBackground(Color.GREEN);
-		
-		JLabel label = new JLabel("TEST");
-		label.setBounds(50, 50, 200, 50);
-		panelMenuItems.add(label);
-	}
-	
-	public static void createPanelOptions(Graphics g) {
-		panelOptions.setLayout(null);
-		panelOptions.setBackground(Color.RED);
-		
-		JLabel label = new JLabel("TEST");
-		label.setBounds(50, 50, 200, 50);
-		panelOptions.add(label);
 	}
 }
