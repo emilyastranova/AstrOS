@@ -151,6 +151,11 @@ public class Commands {
 		return font;
 	}
 
+	public static Font changeFontSize(int fontSize, Font font) {
+		Font fontTem = new Font(font.getFontName(), Font.PLAIN, fontSize);
+		return fontTem;
+	}
+
 	public static void switchPanels(JPanel panelOld, JPanel panelNew) {
 		Main.MainFrame.getContentPane().remove(panelOld);
 		Main.MainFrame.getContentPane().add(panelNew);

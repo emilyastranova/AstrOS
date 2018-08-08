@@ -130,7 +130,9 @@ public class SQL {
 	
 	public static void removeRow(String Table, String Column, String Value) {
 		try {
-			rs = stmt.executeQuery("DELETE FROM `" + Table + " WHERE  `" + Column + "`='" + Value + "';");
+			int x = stmt.executeUpdate("DELETE FROM `" + Table + "` WHERE  `" + Column + "`='" + Value + "';");
+			System.out.println("DELETE FROM `" + Table + "` WHERE  `" + Column + "`='" + Value + "';");
+			System.out.println(x);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

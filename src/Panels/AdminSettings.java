@@ -3,6 +3,8 @@ package Panels;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -12,12 +14,13 @@ import AdminPanels.AdminButton;
 import AdminPanels.Login;
 import AdminPanels.MenuItems;
 import AdminPanels.Options;
+import Commands.Commands;
 import Vars.Vars;
 
 public class AdminSettings {
 
 	public static JPanel panel = new JPanel();
-	public static JPanel panelLogin;
+	public static Login panelLogin;
 	public static JPanel panelMenuItems;
 	public static JPanel panelOptions;
 
@@ -79,5 +82,17 @@ public class AdminSettings {
 		panel.add(scrollOptions);
 		
 		AdminButton buttonRemove = new AdminButton();
+		buttonRemove.setText("Remove");
+		buttonRemove.setFont(Commands.changeFontSize(20, Vars.fontGoogle));
+		buttonRemove.setBorder(null);
+		buttonRemove.setBounds(20, Vars.dimensionFullScreen.height - 95, 100, 60);
+		buttonRemove.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Login.removeLogins();
+				panelLogin.refresh();
+			}
+		});
+		panel.add(buttonRemove);
+		
 	}
 }
