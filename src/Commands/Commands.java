@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import HomePanels.SeeMe;
 import HomePanels.Ticket;
 import Main.Main;
 import Main.MenuItem;

@@ -71,7 +71,7 @@ public class Main extends JFrame {
 		Loading.createView(getGraphics());
 		panelLoading = Loading.panel;
 
-		getContentPane().add(panelHome);
+		getContentPane().add(panelStartUp);
 	}
 	
 	public static void centerWindow(Window frame) {
@@ -86,6 +86,7 @@ public class Main extends JFrame {
 		if (!SQL.isConnected) {
 			System.exit(0);
 		}
+		System.out.println("Creating Views...");
 
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

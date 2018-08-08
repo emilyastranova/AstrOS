@@ -20,10 +20,6 @@ public class SQL {
 	public static ResultSet rs = null;
 	public static boolean isConnected = false;
 
-	public static String currentName;
-	public static String currentID;
-	public static boolean isLoggedIn = false;
-
 	public static void initConnect() {
 
 		try {
@@ -50,27 +46,12 @@ public class SQL {
 	public static void closeConnection() {
 		try {
 			conn.close();
+			
 			System.out.println("Connection Closed");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.err.println("Closing Connection Failed :(");
 		}
-	}
-
-	public static boolean checkSignInCode(String signInCode) {
-		try {
-			rs = stmt.executeQuery("SELECT * FROM `Login` WHERE ID = \"" + signInCode + "\";");
-			if (rs.next()) {
-				isLoggedIn = true;
-				currentName = rs.getString("Name");
-				currentID = rs.getString("ID");
-			} else {
-				isLoggedIn = false;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return isLoggedIn;
 	}
 	
 	public static ArrayList<String> returnTableContents(String Table, String... Columns) {

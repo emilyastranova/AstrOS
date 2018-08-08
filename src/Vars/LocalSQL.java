@@ -18,11 +18,12 @@ public class LocalSQL {
 	public static ArrayList<MenuOptions> EntreeOptions;
 	public static ArrayList<MenuOptions> PizzaOptions;
 	public static ArrayList<MenuOptions> SubOptions;
+	public static boolean isLoggedIn;
 
 	public LocalSQL() {
 		SQL.initConnect();
 
-		Login = SQL.returnTable("Login", "Name", "ID");
+		Login = SQL.returnTable("Login", "ID", "Name");
 		Appetizers = SQL.returnTable("Appetizers", "Items", "Price");
 		Entrees = SQL.returnTable("Entrees", "Items", "Price");
 		Pizza = SQL.returnTable("Pizza", "Items", "Price");
@@ -74,5 +75,17 @@ public class LocalSQL {
 		}
 		
 		return null;
+	}
+
+	public static boolean checkSignInCode(String signInCode) {
+		for (int i = 0; i < Login.size(); i++) {
+			if (Login.get(i).get(0).equals(signInCode)) {
+				isLoggedIn = true;
+				Vars.currentID = Login.get(i).get(0);
+				Vars.currentName = Login.get(i).get(1);
+				System.out.println("Logged in using ID#: " + Vars.currentID + " - " + Vars.currentName);
+			}
+		}
+		return isLoggedIn;
 	}
 }

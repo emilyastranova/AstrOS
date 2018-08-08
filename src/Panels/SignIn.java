@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 
 import Commands.Commands;
 import Commands.SQL;
+import Vars.LocalSQL;
 import Main.Main;
 import Vars.Vars;
 
@@ -152,8 +153,7 @@ public class SignIn {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				SignInCode = tempSignInCode;
-				if (SQL.checkSignInCode(SignInCode)) {
-					System.out.println("Logged in using ID#: " + SQL.currentID + " - " + SQL.currentName);
+				if (LocalSQL.checkSignInCode(SignInCode)) {
 					Commands.switchPanels(Main.panelSignIn, Main.panelHome);
 				} else {
 					panel.add(labelIncorrectCode);
