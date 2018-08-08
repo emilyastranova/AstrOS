@@ -1,13 +1,16 @@
 package Main;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
@@ -16,7 +19,6 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import Commands.SQL;
-import HomePanels.SeeMe;
 import Panels.Add;
 import Panels.AdminLogin;
 import Panels.AdminSettings;
@@ -85,7 +87,14 @@ public class Main extends JFrame {
 	      frame.setLocation(x, y);
 	  }
 
+	public static BufferedImage img = null;
 	public static void main(String[] Args) {
+		try {
+			img = ImageIO.read(new File("astro.png"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		new LocalSQL();
 		if (!SQL.isConnected) {
 			System.exit(0);
@@ -102,6 +111,7 @@ public class Main extends JFrame {
 			@Override
 			public void run() {
 				MainFrame = new Main();
+				MainFrame.setIconImage(img);
 				MainFrame.setVisible(true);
 				centerWindow(MainFrame);
 			}
