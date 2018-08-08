@@ -65,7 +65,6 @@ public class SeeMe {
 				Commands.closeKeyboard();
 				if(!input.getText().equals(""))
 				Commands.addToTicket(Commands.ticketSpacing(input.getText(), Double.parseDouble("0.00"), true), Double.parseDouble("0.00"));
-				System.out.println("Submit button pressed");
 				frame.dispose();
 			}
 		});
