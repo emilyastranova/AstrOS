@@ -88,4 +88,8 @@ public class LocalSQL {
 		}
 		return isLoggedIn;
 	}
+	
+	public static void refresh() {
+		new LocalSQL();
+	}
 }
