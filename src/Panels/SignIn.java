@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -11,30 +13,59 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Commands.Commands;
-import Commands.SQL;
-import Vars.LocalSQL;
 import Main.Main;
+import Vars.LocalSQL;
 import Vars.Vars;
 
-public class SignIn {
+public class SignIn{
 	public static JPanel panel = new JPanel();
 	public static String tempSignInCode = "";
 	public static String SignInCode = "";
+	public static JTextField textFieldSignInCode = new JTextField();
+	public static JLabel labelIncorrectCode = new JLabel("Incorrect ID Number");
 
 	public static void createView(Graphics g) {
 		panel.setLayout(null);
 		panel.setBackground(Vars.colorMainBG);
 
-		JLabel labelIncorrectCode = new JLabel("Incorrect ID Number");
 		labelIncorrectCode.setHorizontalAlignment(JLabel.CENTER);
 		labelIncorrectCode.setFont(Commands.changeFontSize(20));
 		labelIncorrectCode.setForeground(new Color(250, 0, 0));
 		labelIncorrectCode.setBounds(Vars.halfScreenWidth - 100, Vars.halfScreenHeight - 375, 200, 80);
 
-		JTextField textFieldSignInCode = new JTextField();
 		textFieldSignInCode.setFont(Vars.fontDefault);
 		textFieldSignInCode.setHorizontalAlignment(JTextField.CENTER);
 		textFieldSignInCode.setBounds(Vars.halfScreenWidth - 100, Vars.halfScreenHeight - 300, 200, 80);
+		textFieldSignInCode.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getKeyCode() == KeyEvent.VK_ENTER)
+				{
+					SignInCode = textFieldSignInCode.getText();
+					if (LocalSQL.checkSignInCode(SignInCode)) {
+						Commands.switchPanels(Main.panelSignIn, Main.panelHome);
+					} else {
+						panel.add(labelIncorrectCode);
+						Main.MainFrame.getContentPane().setVisible(false);
+						Main.MainFrame.getContentPane().setVisible(true);
+					}
+				}
+			}
+		});
 		panel.add(textFieldSignInCode);
 
 		JButton buttonNum1 = Commands.createButton("1", Vars.halfScreenWidth - 125, Vars.halfScreenHeight - 150, 100,
@@ -152,7 +183,7 @@ public class SignIn {
 		buttonNumGo.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				SignInCode = tempSignInCode;
+				SignInCode = textFieldSignInCode.getText();
 				if (LocalSQL.checkSignInCode(SignInCode)) {
 					Commands.switchPanels(Main.panelSignIn, Main.panelHome);
 				} else {

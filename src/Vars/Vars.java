@@ -11,7 +11,7 @@ public class Vars {
 	public static String currentName;
 	public static String currentID;
 
-	public static final Dimension dimensionFullScreen = new Dimension(1280, 720);//Toolkit.getDefaultToolkit().getScreenSize();
+	public static final Dimension dimensionFullScreen = new Dimension(1280, 720);
 
 	public static final Color colorMainBG = new Color(250, 250, 250);
 	public static final Color colorDefaultButton = new Color(250, 250, 250);

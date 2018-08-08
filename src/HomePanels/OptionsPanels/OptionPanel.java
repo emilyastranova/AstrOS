@@ -38,6 +38,7 @@ public class OptionPanel {
 			items = LocalSQL.returnOptionsByName(nameOfItem);
 		} else {
 			items = new ArrayList<ArrayList<String>>();
+			
 		}
 		
 		panel.removeAll();

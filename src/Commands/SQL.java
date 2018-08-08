@@ -80,7 +80,7 @@ public class SQL {
 				}
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+		//	e.printStackTrace();
 		}		
 		return array;
 	}

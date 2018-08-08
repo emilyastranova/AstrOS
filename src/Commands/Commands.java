@@ -25,6 +25,7 @@ public class Commands {
 
 	public static MenuItemButton buttonAdd;
 	public static MenuItemButton buttonRemove;
+	public static Process keyboard;
 
 	public static String ticketSpacing(String name, double doublePrice) {
 		String spaces = "";
@@ -75,7 +76,7 @@ public class Commands {
 		}
 		return finalString;
 	}
-
+	
 	public static JTextField createRemoveItem(String text, int y) {
 		JTextField field = new JTextField();
 		field.setText(text);
@@ -228,11 +229,34 @@ public class Commands {
 	}
 	
 	public static void openKeyboard() {
+			try {
+				keyboard = Runtime.getRuntime().exec("cmd /c C:\\Windows\\System32\\osk.exe");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
+	
+	public static void closeKeyboard() {
 		try {
-			Runtime.getRuntime().exec("cmd /c C:\\Windows\\System32\\osk.exe");
-		} catch (IOException e1) {
+			Runtime.getRuntime().exec("cmd /c taskkill.exe /F /IM osk.exe /T");
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			e.printStackTrace();
 		}
+		
+		
+		
+	}
+	public static boolean hasLaunched = false;
+	public static void displaySeeMe() {
+		if(!hasLaunched) {
+		new SeeMe();
+		hasLaunched = true;
+		}
+			
+		SeeMe.frame.setVisible(true);
+		SeeMe.input.setText("");
+		SeeMe.input.setVisible(true);
 	}
 }
