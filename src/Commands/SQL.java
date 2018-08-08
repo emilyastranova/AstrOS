@@ -127,5 +127,14 @@ public class SQL {
 		return index;
 		
 	}
+	
+	public static void removeRow(String Table, String Column, String Value) {
+		try {
+			rs = stmt.executeQuery("DELETE FROM `" + Table + " WHERE  `" + Column + "`='" + Value + "';");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }

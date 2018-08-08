@@ -23,6 +23,8 @@ public class Vars {
 	public static final Color colorDefaultSelected = Color.BLUE;
 
 	public static final Font fontDefault = new Font("Arial", Font.PLAIN, 30);
+	public static final Font fontDefaultAdminPanels = new Font("Product Sans Regular", Font.PLAIN, 30);
+	public static final Font googleFont = new Font("Roboto", Font.PLAIN, 30);
 
 	public static final int halfScreenWidth = dimensionFullScreen.width / 2;
 	public static final int halfScreenHeight = dimensionFullScreen.height / 2;

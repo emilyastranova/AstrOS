@@ -77,7 +77,7 @@ public class Main extends JFrame {
 		Loading.createView(getGraphics());
 		panelLoading = Loading.panel;
 
-		getContentPane().add(panelStartUp);
+		getContentPane().add(panelAdminSettings);
 	}
 	
 	public static void centerWindow(Window frame) {

@@ -7,7 +7,7 @@ import Commands.SQL;
 
 public class LocalSQL {
 
-	public static ArrayList<ArrayList<String>> Login;
+	public static ArrayList<ArrayList<String>> Logins;
 	public static ArrayList<ArrayList<String>> Appetizers;
 	public static ArrayList<ArrayList<String>> Entrees;
 	public static ArrayList<ArrayList<String>> Pizza;
@@ -23,7 +23,7 @@ public class LocalSQL {
 	public LocalSQL() {
 		SQL.initConnect();
 
-		Login = SQL.returnTable("Login", "ID", "Name");
+		Logins = SQL.returnTable("Login", "ID", "Name");
 		Appetizers = SQL.returnTable("Appetizers", "Items", "Price");
 		Entrees = SQL.returnTable("Entrees", "Items", "Price");
 		Pizza = SQL.returnTable("Pizza", "Items", "Price");
@@ -78,11 +78,11 @@ public class LocalSQL {
 	}
 
 	public static boolean checkSignInCode(String signInCode) {
-		for (int i = 0; i < Login.size(); i++) {
-			if (Login.get(i).get(0).equals(signInCode)) {
+		for (int i = 0; i < Logins.size(); i++) {
+			if (Logins.get(i).get(0).equals(signInCode)) {
 				isLoggedIn = true;
-				Vars.currentID = Login.get(i).get(0);
-				Vars.currentName = Login.get(i).get(1);
+				Vars.currentID = Logins.get(i).get(0);
+				Vars.currentName = Logins.get(i).get(1);
 				System.out.println("Logged in using ID#: " + Vars.currentID + " - " + Vars.currentName);
 			}
 		}

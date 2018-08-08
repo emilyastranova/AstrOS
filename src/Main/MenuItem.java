@@ -9,9 +9,6 @@ import Vars.Vars;
 
 public class MenuItem extends JButton implements ActionListener {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	String name;
 	double price;
