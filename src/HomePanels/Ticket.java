@@ -29,8 +29,8 @@ public class Ticket {
 	public static JScrollPane scrollPane;
 	public static MenuItemButton buttonSeeMe;
 	public static ArrayList<MenuItem> ticketItems = new ArrayList<MenuItem>();
-	public static int buttonSize = 50;
 	public static DecimalFormat formatter = new DecimalFormat("#,##0.00");
+	public static int buttonSize = 50;
 
 	public static void createView(Graphics g) {
 		panel.setLayout(null);

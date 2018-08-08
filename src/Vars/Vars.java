@@ -8,6 +8,8 @@ import java.awt.Toolkit;
 public class Vars {
 	public static final String Title = "AstroOS";
 	public static final String MasterPassword = "tt";
+	public static String currentName;
+	public static String currentID;
 
 	public static final Dimension dimensionFullScreen = new Dimension(1280, 720);
 
@@ -24,4 +26,5 @@ public class Vars {
 
 	public static final int halfScreenWidth = dimensionFullScreen.width / 2;
 	public static final int halfScreenHeight = dimensionFullScreen.height / 2;
+	
 }
