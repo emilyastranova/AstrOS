@@ -20,9 +20,8 @@ public class AdminMenuItemButton extends JButton implements ActionListener, Mous
 	private boolean clicked = false;
 	public boolean isSelected = false;
 
-	public Color normalColor = null;
-	public Color lightColor = null;
-	public Color darkColor = null;
+	public Color hoverColor = Color.gray;
+	public Color backgroundColor = Color.WHITE;
 
 	public int index = 0;
 	public String name = null;
@@ -32,19 +31,33 @@ public class AdminMenuItemButton extends JButton implements ActionListener, Mous
 	public AdminMenuItemButton(int index) {
 		this.index = index;
 		setForeground(new Color(47, 46, 48));
-		setBackground(Color.GRAY);
-		Color normalRedColor = Color.GRAY;
+		setBackground(hoverColor);
 
-		this.normalColor = normalRedColor;
 		addActionListener(this);
 		addMouseListener(this);
 		setContentAreaFilled(false);
 	}
-	
-	public void setCategory(String Cat) {
-		this.Category = Cat;
+
+	public void setCategory(String Category) {
+		this.Category = Category;
+		if (Category.equals("Appetizers")) {
+			setColor(Color.GREEN);
+			hoverColor = backgroundColor.darker();
+		}
+		else if (Category.equals("Entrees")) {
+			setColor(Color.MAGENTA);
+			hoverColor = backgroundColor.darker();
+		}
+		else if (Category.equals("Pizza")) {
+			setColor(Color.RED);
+			hoverColor = backgroundColor.darker();
+		}
+		else if (Category.equals("Subs")) {
+			setColor(Color.YELLOW.brighter());
+			hoverColor = backgroundColor.darker();
+		}
 	}
-	
+
 	public String getCategory() {
 		return Category;
 	}
@@ -73,15 +86,13 @@ public class AdminMenuItemButton extends JButton implements ActionListener, Mous
 			g2d.setColor(Color.BLUE);
 		} else {
 			if (!hovered) {
-				g2d.setColor(Color.WHITE);
+				g2d.setColor(backgroundColor);
 				setForeground(new Color(47, 46, 48));
 			} else {
-				g2d.setColor(Color.GRAY);
-				setForeground(Color.white);
 				if (clicked) {
-					g2d.setColor(new Color(118, 117, 119));
+					g2d.setColor(Color.BLUE);
 				} else {
-					g2d.setColor(Color.GRAY);
+					g2d.setColor(hoverColor);
 				}
 			}
 		}
@@ -101,7 +112,7 @@ public class AdminMenuItemButton extends JButton implements ActionListener, Mous
 	public int getIndex() {
 		return index;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -112,6 +123,7 @@ public class AdminMenuItemButton extends JButton implements ActionListener, Mous
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		MenuItems.unselectAll();
 		isSelected = !isSelected;
 		Options.switchPanels(name);
 		repaint();
@@ -160,6 +172,11 @@ public class AdminMenuItemButton extends JButton implements ActionListener, Mous
 
 	public boolean isSelected() {
 		return isSelected;
+	}
+
+	public void setColor(Color c) {
+		backgroundColor = c;
+		setBackground(backgroundColor);
 	}
 
 }

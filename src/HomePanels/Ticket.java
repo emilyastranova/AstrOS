@@ -17,6 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import Commands.Commands;
+import Main.Main;
 import Main.MenuItem;
 import Main.MenuItemButton;
 import Vars.Vars;
@@ -28,6 +29,7 @@ public class Ticket {
 	public static JTextField totalPrice;
 	public static JScrollPane scrollPane;
 	public static MenuItemButton buttonSeeMe;
+	public static MenuItemButton buttonFinished;
 	public static ArrayList<MenuItem> ticketItems = new ArrayList<MenuItem>();
 	public static DecimalFormat formatter = new DecimalFormat("#,##0.00");
 	public static int buttonSize = 50;
@@ -45,6 +47,16 @@ public class Ticket {
 			public void actionPerformed(ActionEvent e) {
 				Commands.openKeyboard();
 				Commands.displaySeeMe();
+			}
+		});
+		
+		buttonFinished = new MenuItemButton(Vars.colorDefaultButton, Vars.colorDefaultFont);
+		buttonFinished.setText("FINISHED");
+		buttonFinished.setFont(Commands.changeFontSize(15));
+		buttonFinished.setBounds(27, 630, 100, 50);
+		buttonFinished.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Commands.switchPanels(Main.panelHome, Main.panelStartUp);
 			}
 		});
 		
@@ -68,6 +80,7 @@ public class Ticket {
 		panel.add(scrollPane);
 		panel.add(totalPrice);
 		panel.add(buttonSeeMe);
+		panel.add(buttonFinished);
 		refresh();
 	}
 	

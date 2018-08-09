@@ -241,7 +241,7 @@ public class AdminSettings {
 		buttonOptionsAdd.setText("ADD");
 		buttonOptionsAdd.setFont(Commands.changeFontSize(20, Vars.fontGoogle));
 		buttonOptionsAdd.setBorder(null);
-		buttonOptionsAdd.setBounds(570, Vars.dimensionFullScreen.height - 95, 100, 60);
+		buttonOptionsAdd.setBounds(1000, Vars.dimensionFullScreen.height - 95, 100, 60);
 		buttonOptionsAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frameAddOption.setVisible(true);
@@ -253,7 +253,7 @@ public class AdminSettings {
 		buttonOptionsRefresh.setText("REFRESH");
 		buttonOptionsRefresh.setFont(Commands.changeFontSize(20, Vars.fontGoogle));
 		buttonOptionsRefresh.setBorder(null);
-		buttonOptionsRefresh.setBounds(700, Vars.dimensionFullScreen.height - 95, 100, 60);
+		buttonOptionsRefresh.setBounds(1130, Vars.dimensionFullScreen.height - 95, 100, 60);
 		buttonOptionsRefresh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AdminPanels.Loading temp = new AdminPanels.Loading();

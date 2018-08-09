@@ -91,4 +91,21 @@ public class MenuItems extends JPanel {
 		}
 		SQL.closeConnection();
 	}
+	
+	public static void unselectAll() {
+		for (int i = 0; i < buttons.size(); i++) {
+			buttons.get(i).setSelected(false);
+			buttons.get(i).repaint();
+		}
+	}
+	
+	public static String getSelectedItem() {
+		for (int i = 0; i < buttons.size(); i++) {
+			if (buttons.get(i).isSelected()) {
+				return buttons.get(i).getName();
+			}
+		}
+
+		return null;
+	}
 }

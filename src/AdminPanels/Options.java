@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import AdminPanels.AdminOptionButton;
 import Commands.Commands;
+import Commands.SQL;
 import Panels.AdminSettings;
 import Vars.LocalSQL;
 import Vars.Vars;
@@ -23,7 +24,6 @@ public class Options extends JPanel {
 		setLayout(null);
 		setBackground(Color.WHITE);
 		setSize(new Dimension(Vars.dimensionFullScreen.width / 3, 100));
-		
 		buttons = new ArrayList<AdminOptionButton>();
 	}
 	
@@ -53,7 +53,13 @@ public class Options extends JPanel {
 	}
 	
 	public static void removeOptions() {
-		
+		SQL.initConnect();
+		for (int i = 0; i < buttons.size(); i++) {
+			if (buttons.get(i).isSelected()) {
+				//SQL.removeRow("Opt_" + buttons.get(i).getName(), Column, Value);
+			}
+		}
+		SQL.closeConnection();
 	}
 
 }

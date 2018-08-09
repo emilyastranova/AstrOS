@@ -17,7 +17,7 @@ import Main.Main;
 import Vars.LocalSQL;
 import Vars.Vars;
 
-public class SignIn{
+public class SignIn {
 	public static JPanel panel = new JPanel();
 	public static String tempSignInCode = "";
 	public static String SignInCode = "";
@@ -37,24 +37,23 @@ public class SignIn{
 		textFieldSignInCode.setHorizontalAlignment(JTextField.CENTER);
 		textFieldSignInCode.setBounds(Vars.halfScreenWidth - 100, Vars.halfScreenHeight - 300, 200, 80);
 		textFieldSignInCode.addKeyListener(new KeyListener() {
-			
+
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void keyReleased(KeyEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
-				if(e.getKeyCode() == KeyEvent.VK_ENTER)
-				{
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					SignInCode = textFieldSignInCode.getText();
 					if (LocalSQL.checkSignInCode(SignInCode)) {
 						Commands.switchPanels(Main.panelSignIn, Main.panelHome);
@@ -195,5 +194,9 @@ public class SignIn{
 		});
 		panel.add(buttonNumGo);
 
+	}
+
+	public static void resetPass() {
+		textFieldSignInCode.setText("");
 	}
 }

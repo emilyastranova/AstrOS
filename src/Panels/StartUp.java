@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 
 import Commands.Commands;
 import Main.Main;
+import Vars.LocalSQL;
 import Vars.Vars;
 
 public class StartUp {
@@ -57,6 +58,8 @@ public class StartUp {
 		buttonNormalStartup.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				LocalSQL.refresh();
+				Panels.SignIn.resetPass();
 				Commands.switchPanels(Main.panelStartUp, Main.panelSignIn);
 			}
 		});

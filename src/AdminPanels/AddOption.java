@@ -6,16 +6,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.Timer;
 
 import Commands.Commands;
+import Commands.SQL;
 import Main.Main;
+import Vars.LocalSQL;
 import Vars.Vars;
 
 public class AddOption extends JFrame {
@@ -96,6 +97,23 @@ public class AddOption extends JFrame {
 		buttonSubmit.setFont(Commands.changeFontSize(20, Vars.fontGoogle));
 		buttonSubmit.setBorder(null);
 		buttonSubmit.setBounds(135, 225, 100, 60);
+		buttonSubmit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<String> columns = new ArrayList<String>();
+				ArrayList<String> values = new ArrayList<String>();
+				columns.add("Options");
+				columns.add("Price");
+				values.add(textOptionName.getText());
+				values.add(textOptionPrice.getText());
+				SQL.initConnect();
+				SQL.addRow("Opt_"+MenuItems.getSelectedItem(), columns, values);
+				SQL.closeConnection();	
+				
+				LocalSQL.refresh();
+					}
+		});
 		panel.add(buttonSubmit);
 		
 		add(panel);
