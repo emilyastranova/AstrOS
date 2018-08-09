@@ -220,7 +220,7 @@ public class AdminSettings {
 		buttonOptionsRemove.setText("REMOVE");
 		buttonOptionsRemove.setFont(Commands.changeFontSize(20, Vars.fontGoogle));
 		buttonOptionsRemove.setBorder(null);
-		buttonOptionsRemove.setBounds(440, Vars.dimensionFullScreen.height - 95, 100, 60);
+		buttonOptionsRemove.setBounds(870, Vars.dimensionFullScreen.height - 95, 100, 60);
 		buttonOptionsRemove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AdminPanels.Loading temp = new AdminPanels.Loading();
