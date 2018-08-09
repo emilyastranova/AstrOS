@@ -1,5 +1,6 @@
 package AdminPanels;
 
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -9,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Commands.Commands;
+import Commands.SQL;
 import Vars.LocalSQL;
 import Vars.Vars;
 
@@ -21,40 +23,72 @@ public class MenuItems extends JPanel {
 	public MenuItems() {
 		setLayout(null);
 		setBackground(Color.white);
-		setLocation(0, 100);		
-		
-		refreshAppetizers();
-		refreshSize();
-	}
-	
-	public void refreshAppetizers() {
-		LocalSQL.refresh();
-		removeAll();
-		JLabel labelAppetizers = new JLabel("Appetizers");
-		labelAppetizers.setBounds(0, 0, Vars.dimensionFullScreen.width / 3 - 20, 50);
-		labelAppetizers.setFont(Vars.fontGoogle);
-		labelAppetizers.setHorizontalAlignment(JLabel.CENTER);
-		labelAppetizers.setForeground(Color.BLACK);
-		add(labelAppetizers);
+		setLocation(0, 100);
+		setPreferredSize(new Dimension(Vars.dimensionFullScreen.width / 3, (LocalSQL.AllItems.size() * 60) + 40));
 		
 		buttons = new ArrayList<AdminMenuItemButton>();
-		for (int i = 0; i < LocalSQL.Appetizers.size(); i++) {
+		for (int i = 0; i < LocalSQL.AllItems.size(); i++) {
 			buttons.add(new AdminMenuItemButton(i));
-			buttons.get(i).setText(LocalSQL.Appetizers.get(i).get(0));
+			buttons.get(i).setText(LocalSQL.AllItems.get(i).get(0));
+			buttons.get(i).setName(LocalSQL.AllItems.get(i).get(0));
 			buttons.get(i).setSize(300, 50);
-			buttons.get(i).setLocation(50, (75*i)+75);
+			buttons.get(i).setLocation(50, (60*i)+10);
 			buttons.get(i).setBorder(null);
 			buttons.get(i).setFont(Commands.changeFontSize(20, Vars.fontGoogle));
-			buttons.get(i).setPrice(LocalSQL.Appetizers.get(i).get(1));
+			buttons.get(i).setPrice(LocalSQL.AllItems.get(i).get(1));
+			if (i < LocalSQL.Appetizers.size()) {
+				buttons.get(i).setCategory("Appetizers");
+			} else if (i < LocalSQL.Appetizers.size() + LocalSQL.Entrees.size()) {
+				buttons.get(i).setCategory("Entrees");
+			} else if (i < LocalSQL.Appetizers.size() + LocalSQL.Entrees.size() + LocalSQL.Pizza.size()) {
+				buttons.get(i).setCategory("Pizza");
+			} else {
+				buttons.get(i).setCategory("Subs");
+			}
 			add(buttons.get(i));
 		}
 		setVisible(false);
 		setVisible(true);
 	}
 	
-	public void refreshSize() {
-		NumOfItems = LocalSQL.Appetizers.size() + LocalSQL.Entrees.size() + LocalSQL.Pizza.size() + LocalSQL.Subs.size();
-		setPreferredSize(new Dimension(Vars.dimensionFullScreen.width / 3, (NumOfItems * 75) + 40));
+	public void refresh() {
+		LocalSQL.refresh();
+		removeAll();
+		setPreferredSize(new Dimension(Vars.dimensionFullScreen.width / 3, (LocalSQL.AllItems.size() * 60) + 40));
 		
+		buttons = new ArrayList<AdminMenuItemButton>();
+		for (int i = 0; i < LocalSQL.AllItems.size(); i++) {
+			buttons.add(new AdminMenuItemButton(i));
+			buttons.get(i).setText(LocalSQL.AllItems.get(i).get(0));
+			buttons.get(i).setName(LocalSQL.AllItems.get(i).get(0));
+			buttons.get(i).setSize(300, 50);
+			buttons.get(i).setLocation(50, (60*i)+10);
+			buttons.get(i).setBorder(null);
+			buttons.get(i).setFont(Commands.changeFontSize(20, Vars.fontGoogle));
+			buttons.get(i).setPrice(LocalSQL.AllItems.get(i).get(1));
+			if (i < LocalSQL.Appetizers.size()) {
+				buttons.get(i).setCategory("Appetizers");
+			} else if (i < LocalSQL.Appetizers.size() + LocalSQL.Entrees.size()) {
+				buttons.get(i).setCategory("Entrees");
+			} else if (i < LocalSQL.Appetizers.size() + LocalSQL.Entrees.size() + LocalSQL.Pizza.size()) {
+				buttons.get(i).setCategory("Pizza");
+			} else {
+				buttons.get(i).setCategory("Subs");
+			}
+			add(buttons.get(i));
+		}
+		setVisible(false);
+		setVisible(true);
+	}
+	
+	public static void removeMenuItems() {
+		SQL.initConnect();
+		for (int i = 0; i < buttons.size(); i++) {
+			if (buttons.get(i).isSelected()) {
+				SQL.removeRow(buttons.get(i).getCategory(), "Items", buttons.get(i).getName());
+				SQL.dropTable("Opt_" + buttons.get(i).getName());
+			}
+		}
+		SQL.closeConnection();
 	}
 }

@@ -14,6 +14,8 @@ import javax.swing.JScrollPane;
 import javax.swing.Timer;
 
 import AdminPanels.AddLogin;
+import AdminPanels.AddMenuItem;
+import AdminPanels.AddOption;
 import AdminPanels.AdminButton;
 import AdminPanels.Login;
 import AdminPanels.MenuItems;
@@ -26,9 +28,11 @@ public class AdminSettings {
 
 	public static JPanel panel = new JPanel();
 	public static Login panelLogin;
-	public static JPanel panelMenuItems;
-	public static JPanel panelOptions;
-	public static AddLogin frameAdd;
+	public static MenuItems panelMenuItems;
+	public static Options panelOptions;
+	public static AddLogin frameAddLogin;
+	public static AddMenuItem frameAddMenuItem;
+	public static AddOption frameAddOption;
 
 	public static void createView(Graphics g) {
 		panel.setLayout(null);
@@ -74,8 +78,12 @@ public class AdminSettings {
 		panelLogin = new Login();
 		panelMenuItems = new MenuItems();
 		panelOptions = new Options();
-		frameAdd = new AddLogin();
-		frameAdd.setVisible(false);
+		frameAddLogin = new AddLogin();
+		frameAddLogin.setVisible(false);
+		frameAddMenuItem = new AddMenuItem();
+		frameAddMenuItem.setVisible(false);
+		frameAddOption = new AddOption();
+		frameAddOption.setVisible(false);
 		
 		
 		JScrollPane scrollLogin = new JScrollPane(panelLogin);
@@ -130,7 +138,7 @@ public class AdminSettings {
 		buttonLoginAdd.setBounds(150, Vars.dimensionFullScreen.height - 95, 100, 60);
 		buttonLoginAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frameAdd.setVisible(true);
+				frameAddLogin.setVisible(true);
 			}
 		});
 		panel.add(buttonLoginAdd);
@@ -154,5 +162,111 @@ public class AdminSettings {
 			}
 		});
 		panel.add(buttonLoginRefresh);
+		
+		AdminButton buttonMenuItemsRemove = new AdminButton();
+		buttonMenuItemsRemove.setText("REMOVE");
+		buttonMenuItemsRemove.setFont(Commands.changeFontSize(20, Vars.fontGoogle));
+		buttonMenuItemsRemove.setBorder(null);
+		buttonMenuItemsRemove.setBounds(440, Vars.dimensionFullScreen.height - 95, 100, 60);
+		buttonMenuItemsRemove.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AdminPanels.Loading temp = new AdminPanels.Loading();
+				Timer tempTime =  new Timer(100, new ActionListener() {
+		                public void actionPerformed(ActionEvent evt) {
+		                	MenuItems.removeMenuItems();
+		                	panelMenuItems.refresh();
+		                	temp.dispose();
+		                }
+		            });
+				tempTime.start();
+				tempTime.setRepeats(false);
+			}
+		});
+		panel.add(buttonMenuItemsRemove);
+		
+		AdminButton buttonMenuItemsAdd = new AdminButton();
+		buttonMenuItemsAdd.setText("ADD");
+		buttonMenuItemsAdd.setFont(Commands.changeFontSize(20, Vars.fontGoogle));
+		buttonMenuItemsAdd.setBorder(null);
+		buttonMenuItemsAdd.setBounds(570, Vars.dimensionFullScreen.height - 95, 100, 60);
+		buttonMenuItemsAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frameAddMenuItem.setVisible(true);
+			}
+		});
+		panel.add(buttonMenuItemsAdd);
+		
+		AdminButton buttonMenuItemsRefresh = new AdminButton();
+		buttonMenuItemsRefresh.setText("REFRESH");
+		buttonMenuItemsRefresh.setFont(Commands.changeFontSize(20, Vars.fontGoogle));
+		buttonMenuItemsRefresh.setBorder(null);
+		buttonMenuItemsRefresh.setBounds(700, Vars.dimensionFullScreen.height - 95, 100, 60);
+		buttonMenuItemsRefresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AdminPanels.Loading temp = new AdminPanels.Loading();
+				Timer tempTime =  new Timer(100, new ActionListener() {
+		                public void actionPerformed(ActionEvent evt) {
+		                	panelMenuItems.refresh();
+		                	temp.dispose();
+		                }
+		            });
+				tempTime.start();
+				tempTime.setRepeats(false);
+			}
+		});
+		panel.add(buttonMenuItemsRefresh);
+		
+		AdminButton buttonOptionsRemove = new AdminButton();
+		buttonOptionsRemove.setText("REMOVE");
+		buttonOptionsRemove.setFont(Commands.changeFontSize(20, Vars.fontGoogle));
+		buttonOptionsRemove.setBorder(null);
+		buttonOptionsRemove.setBounds(440, Vars.dimensionFullScreen.height - 95, 100, 60);
+		buttonOptionsRemove.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AdminPanels.Loading temp = new AdminPanels.Loading();
+				Timer tempTime =  new Timer(100, new ActionListener() {
+		                public void actionPerformed(ActionEvent evt) {
+		                	Options.removeOptions();
+		                	panelOptions.refresh();
+		                	temp.dispose();
+		                }
+		            });
+				tempTime.start();
+				tempTime.setRepeats(false);
+			}
+		});
+		panel.add(buttonOptionsRemove);
+		
+		AdminButton buttonOptionsAdd = new AdminButton();
+		buttonOptionsAdd.setText("ADD");
+		buttonOptionsAdd.setFont(Commands.changeFontSize(20, Vars.fontGoogle));
+		buttonOptionsAdd.setBorder(null);
+		buttonOptionsAdd.setBounds(570, Vars.dimensionFullScreen.height - 95, 100, 60);
+		buttonOptionsAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frameAddOption.setVisible(true);
+			}
+		});
+		panel.add(buttonOptionsAdd);
+		
+		AdminButton buttonOptionsRefresh = new AdminButton();
+		buttonOptionsRefresh.setText("REFRESH");
+		buttonOptionsRefresh.setFont(Commands.changeFontSize(20, Vars.fontGoogle));
+		buttonOptionsRefresh.setBorder(null);
+		buttonOptionsRefresh.setBounds(700, Vars.dimensionFullScreen.height - 95, 100, 60);
+		buttonOptionsRefresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AdminPanels.Loading temp = new AdminPanels.Loading();
+				Timer tempTime =  new Timer(100, new ActionListener() {
+		                public void actionPerformed(ActionEvent evt) {
+		                	panelOptions.refresh();
+		                	temp.dispose();
+		                }
+		            });
+				tempTime.start();
+				tempTime.setRepeats(false);
+			}
+		});
+		panel.add(buttonOptionsRefresh);
 	}
 }

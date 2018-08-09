@@ -2,6 +2,8 @@ package AdminPanels;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
@@ -10,11 +12,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 
+import Commands.Commands;
 import Main.Main;
 import Vars.Vars;
 
-public class AddLogin extends JFrame{
+public class AddLogin extends JFrame {
+	private static final long serialVersionUID = 1L;
 	public static JPanel panel = new JPanel();
 	
 	public AddLogin() {
@@ -110,7 +115,14 @@ public class AddLogin extends JFrame{
 				confirmPassword.setText("");
 			}
 		});
+
+		AdminButton buttonSubmit = new AdminButton();
+		buttonSubmit.setText("SUBMIT");
+		buttonSubmit.setFont(Commands.changeFontSize(20, Vars.fontGoogle));
+		buttonSubmit.setBorder(null);
+		buttonSubmit.setBounds(135, 325, 100, 60);
 		
+		panel.add(buttonSubmit);
 		panel.add(username);
 		panel.add(password);
 		panel.add(confirmPassword);
@@ -123,8 +135,9 @@ public class AddLogin extends JFrame{
 		setSize(new Dimension(400,450));
 		Main.centerWindow(this);
 		setTitle("Add Login");
+		setResizable(false);
 		setVisible(true);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
 	
 	public static void main(String args[]) {

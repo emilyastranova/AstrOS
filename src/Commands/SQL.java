@@ -29,16 +29,16 @@ public class SQL {
 			isConnected = true;
 
 			stmt = conn.createStatement();
-		} catch (Exception exc) {
-			System.out.println("Connection Failed");
-			isConnected = false;
-		}
 
-		try {
-			stmt.setQueryTimeout(300);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			try {
+				stmt.setQueryTimeout(300);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				System.err.println("Initiation of Query Timeout Failed");
+			}
+		} catch (Exception exc) {
+			System.err.println("Connection Failed");
+			isConnected = false;
 		}
 
 	}
@@ -80,7 +80,7 @@ public class SQL {
 				}
 			}
 		} catch (SQLException e) {
-			// e.printStackTrace();
+			
 		}
 		return array;
 	}
@@ -94,7 +94,7 @@ public class SQL {
 				array.add(rs.getString(1));
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.err.println("Statement Failed");
 		}
 		return array;
 	}
@@ -108,7 +108,7 @@ public class SQL {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.err.println("Statement Failed");
 		}
 		return index;
 
@@ -123,7 +123,7 @@ public class SQL {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.err.println("Statement Failed");
 		}
 		return index;
 
@@ -134,7 +134,7 @@ public class SQL {
 			stmt.executeUpdate("DELETE FROM `" + Table + "` WHERE  `" + Column + "`='" + Value + "';");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.err.println("Statement Failed");
 		}
 	}
 
@@ -156,9 +156,25 @@ public class SQL {
 				statement += "'" + Values.get(i) + "', ";
 			}
 		}
-
 		try {
 			stmt.executeUpdate(statement);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+		}
+	}
+	
+	public static void createOptionTable(String Table) {
+		try {
+			stmt.executeUpdate("CREATE TABLE `Opt_" + Table + "` (`Options` VARCHAR(40) NOT NULL, `Price` VARCHAR(10) NOT NULL, PRIMARY KEY (`Options`))"); 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void dropTable(String Table) {
+		try {
+			stmt.executeUpdate("DROP TABLE `" + Table + "`;");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

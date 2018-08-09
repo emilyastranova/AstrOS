@@ -27,6 +27,7 @@ public class AdminMenuItemButton extends JButton implements ActionListener, Mous
 	public int index = 0;
 	public String name = null;
 	public String Price = null;
+	public String Category = null;
 
 	public AdminMenuItemButton(int index) {
 		this.index = index;
@@ -40,11 +41,19 @@ public class AdminMenuItemButton extends JButton implements ActionListener, Mous
 		setContentAreaFilled(false);
 	}
 	
+	public void setCategory(String Cat) {
+		this.Category = Cat;
+	}
+	
+	public String getCategory() {
+		return Category;
+	}
+
 	public void setPrice(String Price) {
 		this.Price = Price;
 	}
-	
-	public String getID() {
+
+	public String getPrice() {
 		return Price;
 	}
 
@@ -92,6 +101,10 @@ public class AdminMenuItemButton extends JButton implements ActionListener, Mous
 	public int getIndex() {
 		return index;
 	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public String getName() {
 		return name;
@@ -100,6 +113,7 @@ public class AdminMenuItemButton extends JButton implements ActionListener, Mous
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		isSelected = !isSelected;
+		Options.switchPanels(name);
 		repaint();
 	}
 
