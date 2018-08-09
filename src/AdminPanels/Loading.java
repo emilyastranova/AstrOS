@@ -30,6 +30,7 @@ public class Loading extends JFrame{
 		add(panel);
 		setSize(new Dimension(400,150));
 		Main.centerWindow(this);
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setTitle("Making changes...");
 		setVisible(true);
 	}

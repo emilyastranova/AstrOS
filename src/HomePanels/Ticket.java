@@ -56,7 +56,8 @@ public class Ticket {
 		buttonFinished.setBounds(27, 630, 100, 50);
 		buttonFinished.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Commands.switchPanels(Main.panelHome, Main.panelStartUp);
+				System.out.println("Logged out using ID#: " + Vars.currentID + " - " + Vars.currentName);
+				Commands.switchPanels(Main.panelHome, Main.panelSignIn);
 			}
 		});
 		

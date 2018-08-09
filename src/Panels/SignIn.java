@@ -56,6 +56,8 @@ public class SignIn {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					SignInCode = textFieldSignInCode.getText();
 					if (LocalSQL.checkSignInCode(SignInCode)) {
+						textFieldSignInCode.setText("");
+						panel.remove(labelIncorrectCode);
 						Commands.switchPanels(Main.panelSignIn, Main.panelHome);
 					} else {
 						panel.add(labelIncorrectCode);
@@ -184,6 +186,8 @@ public class SignIn {
 			public void actionPerformed(ActionEvent e) {
 				SignInCode = textFieldSignInCode.getText();
 				if (LocalSQL.checkSignInCode(SignInCode)) {
+					textFieldSignInCode.setText("");
+					panel.remove(labelIncorrectCode);
 					Commands.switchPanels(Main.panelSignIn, Main.panelHome);
 				} else {
 					panel.add(labelIncorrectCode);

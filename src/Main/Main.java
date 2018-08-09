@@ -75,7 +75,7 @@ public class Main extends JFrame {
 		AdminSettings.createView(getGraphics());
 		panelAdminSettings = AdminSettings.panel;
 
-		getContentPane().add(panelAdminSettings);
+		getContentPane().add(panelStartUp);
 	}
 	
 	public static void centerWindow(Window frame) {

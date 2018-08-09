@@ -18,6 +18,7 @@ import Vars.Vars;
 public class Options extends JPanel {
 	
 	public static ArrayList<ArrayList<String>> optionsTemp;
+	public static String temp;
 	public static ArrayList<AdminOptionButton> buttons;
 	
 	public Options() {
@@ -30,7 +31,9 @@ public class Options extends JPanel {
 	public void refresh() {
 		LocalSQL.refresh();
 		removeAll();
+		optionsTemp = LocalSQL.returnOptionsByName(temp);
 		buttons = new ArrayList<AdminOptionButton>();
+		if (!optionsTemp.isEmpty()) {
 		for (int i = 0; i < optionsTemp.size(); i++) {
 			buttons.add(new AdminOptionButton(i));
 			buttons.get(i).setText(optionsTemp.get(i).get(0));
@@ -42,13 +45,13 @@ public class Options extends JPanel {
 			buttons.get(i).setPrice(optionsTemp.get(i).get(1));
 			add(buttons.get(i));
 		}
+		}
 		setVisible(false);
 		setVisible(true);
 	}
 
 	public static void switchPanels(String name) {
-		optionsTemp = LocalSQL.returnOptionsByName(name);
-		System.out.println(optionsTemp);
+		temp = name;
 		AdminSettings.panelOptions.refresh();
 	}
 	
@@ -56,9 +59,11 @@ public class Options extends JPanel {
 		SQL.initConnect();
 		for (int i = 0; i < buttons.size(); i++) {
 			if (buttons.get(i).isSelected()) {
-				//SQL.removeRow("Opt_" + buttons.get(i).getName(), Column, Value);
+				SQL.removeRow("Opt_" + MenuItems.getSelectedItem(), "Options", buttons.get(i).getName());
 			}
 		}
+		temp = MenuItems.getSelectedItem();
+		AdminSettings.panelOptions.refresh();
 		SQL.closeConnection();
 	}
 

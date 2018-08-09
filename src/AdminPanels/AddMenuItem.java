@@ -128,9 +128,9 @@ public class AddMenuItem extends JFrame {
 						SQL.initConnect();
 						SQL.addRow(comboCategoryItems[comboCategory.getSelectedIndex()], Columns, Values);
 						SQL.createOptionTable(textItemName.getText());
+						SQL.closeConnection();
 						AdminSettings.panelMenuItems.refresh();
 						AdminSettings.panelOptions.refresh();
-						SQL.closeConnection();
 						temp.dispose();
 					}
 				});

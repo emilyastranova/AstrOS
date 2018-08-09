@@ -10,7 +10,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.Timer;
 
 import Vars.Vars;
 
@@ -42,19 +44,12 @@ public class AdminMenuItemButton extends JButton implements ActionListener, Mous
 		this.Category = Category;
 		if (Category.equals("Appetizers")) {
 			setColor(Color.GREEN);
-			hoverColor = backgroundColor.darker();
-		}
-		else if (Category.equals("Entrees")) {
+		} else if (Category.equals("Entrees")) {
 			setColor(Color.MAGENTA);
-			hoverColor = backgroundColor.darker();
-		}
-		else if (Category.equals("Pizza")) {
+		} else if (Category.equals("Pizza")) {
 			setColor(Color.RED);
-			hoverColor = backgroundColor.darker();
-		}
-		else if (Category.equals("Subs")) {
+		} else if (Category.equals("Subs")) {
 			setColor(Color.YELLOW.brighter());
-			hoverColor = backgroundColor.darker();
 		}
 	}
 
@@ -83,16 +78,19 @@ public class AdminMenuItemButton extends JButton implements ActionListener, Mous
 		// Draws the rounded opaque panel with borders
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); // For High quality
 		if (isSelected) {
-			g2d.setColor(Color.BLUE);
+			setBorder(BorderFactory.createLineBorder(Color.BLUE, 5));
+			g2d.setColor(backgroundColor);
 		} else {
+			setBorder(null);
 			if (!hovered) {
 				g2d.setColor(backgroundColor);
 				setForeground(new Color(47, 46, 48));
 			} else {
 				if (clicked) {
-					g2d.setColor(Color.BLUE);
+					g2d.setColor(backgroundColor.darker());
+					setBorder(BorderFactory.createLineBorder(Color.BLUE, 5));
 				} else {
-					g2d.setColor(hoverColor);
+					g2d.setColor(backgroundColor.darker());
 				}
 			}
 		}
@@ -123,10 +121,18 @@ public class AdminMenuItemButton extends JButton implements ActionListener, Mous
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		MenuItems.unselectAll();
-		isSelected = !isSelected;
-		Options.switchPanels(name);
-		repaint();
+		AdminPanels.Loading temp = new AdminPanels.Loading();
+		Timer tempTime = new Timer(100, new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				MenuItems.unselectAll();
+				isSelected = !isSelected;
+				Options.switchPanels(name);
+				repaint();
+				temp.dispose();
+			}
+		});
+		tempTime.start();
+		tempTime.setRepeats(false);
 	}
 
 	@Override
@@ -176,7 +182,6 @@ public class AdminMenuItemButton extends JButton implements ActionListener, Mous
 
 	public void setColor(Color c) {
 		backgroundColor = c;
-		setBackground(backgroundColor);
 	}
 
 }

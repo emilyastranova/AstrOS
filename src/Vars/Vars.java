@@ -6,7 +6,7 @@ import java.awt.Font;
 import java.awt.Toolkit;
 
 public class Vars {
-	public static final String Title = "AstroOS";
+	public static final String Title = "AstrOS";
 	public static final String MasterPassword = "tt";
 	public static String currentName;
 	public static String currentID;
