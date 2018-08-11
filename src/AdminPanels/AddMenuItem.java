@@ -130,7 +130,6 @@ public class AddMenuItem extends JFrame {
 						SQL.createOptionTable(textItemName.getText());
 						SQL.closeConnection();
 						AdminSettings.panelMenuItems.refresh();
-						AdminSettings.panelOptions.refresh();
 						temp.dispose();
 					}
 				});
