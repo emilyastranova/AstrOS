@@ -55,8 +55,7 @@ public class Main extends JFrame {
 			public void windowClosing(WindowEvent e) {
 				System.exit(0);
 			}
-		});
-		
+		});		
 		pack();
 
 	}
